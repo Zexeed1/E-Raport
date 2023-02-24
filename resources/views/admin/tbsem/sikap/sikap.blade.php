@@ -315,6 +315,67 @@
 </div>
 @endforeach
 
+@foreach ($siswa2 as $siswa )
+<!-- Modal -->
+<div class="modal fade" id="Update{{ $siswa->id }}" tabindex="-1" aria-labelledby="UpdateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdateLabel">Nilai sikap dan absesnsi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form action="/nilai-sikap/{{ $siswa->id }}/update" method="POST">
+          @csrf
+          @method('put')
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="uts">Deskripsi Spiritual</label>
+                      <textarea type="text" class="form-control" name="spiritual" placeholder="Masukkan Deskripsi Sikap Spiritual" style="height: 100;">{{ $siswa->spiritual }}</textarea>
+                    </div>
+                      <div class="form-group">
+                        <label for="sikap">Deskripsi Sosial</label>
+                        <textarea class="form-control"  style="height: 50;" name="sosial" placeholder="Masukkan Deskripsi Sikap Sosial">{{ $siswa->sosial }}</textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                   <div class="form-group">
+                        <label for="ulangan">Izin</label>
+                        <input type="number" class="form-control" name="izin" placeholder="Masukkan Absensi" value="{{ $siswa->izin }}">
+                      </div>
+                    <div class="form-group">
+                        <label for="performance">Sakit</label>
+                        <input type="number"  class="form-control" name="sakit" placeholder="Masukkan Absensi" value="{{ $siswa->sakit }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="performance">Alpha</label>
+                        <input type="number"  class="form-control" name="alpha" placeholder="Masukkan Absensi" value="{{ $siswa->alpha }}">
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-12">
+                   <a  class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                   <button type="submit" class="btn btn-success float-right">Simpan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form><!-- /.form --->
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
 @endsection
 @section('script')
     <script>
