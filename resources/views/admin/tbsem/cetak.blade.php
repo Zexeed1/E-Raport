@@ -20,8 +20,8 @@
   <img class="float-left" src="/images/logo-fis.png" width="150" height="80">
   <p style="text-align: center; font-size:x-large; font:bold;"><b>PENCAPAIAN KOMPETENSI PESERTA DIDIK</b><br>SMPIT Future Islamic School</p><hr>@foreach ($semester2 as $semester )@endforeach
 
-  <div class="box">
-    <div class="col-4">
+  <div class="card col-2">
+    <div class="col-12">
         <p>Nama : {{ $siswa->nama }}</p>
         <p>kelas : {{ $siswa->kelas->kelas }}</p>
         <p>NIS  : {{ $siswa->nis }}</p>
@@ -76,8 +76,11 @@
             <th style="text-align: center">Deksripsi</th>
         </tr>
         </thead>
-        <tbody>
         @foreach ($siswa->mapel2 as $mapel )
+        @php
+            $jumlah = $mapel->pivot->pa + $mapel->pivot->ka;
+            $na = $jumlah/2;
+        @endphp
         <tr>
             <td style="text-align: center">{{ $loop->iteration }}</td>
             <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
@@ -113,7 +116,7 @@
             }
         @endphp</td>
             <td style="text-align: justify">{{ $mapel->pivot->dk }}</td>
-            <td></td>
+            <td>{{ $na }}</td>
         </tr>
         @endforeach
         </tbody>
