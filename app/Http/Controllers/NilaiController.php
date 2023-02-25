@@ -65,6 +65,36 @@ class NilaiController extends Controller
 
 
     //---------------------------------Nilai Semester-------------------------------------//
+    public function pengetahuan()
+    {
+        $mapel = mapel::all();
+        return view('admin.tbsem.pengetahuan.pengetahuan',compact('mapel'));
+    }
+    public function kelas7($id)
+    {
+        $mapel = mapel::find($id);
+        $siswa = siswa::where('kelas_id', '1')->get();
+        $semester = semester::where('id','2')->get();
+        return view('admin.tbsem.pengetahuan.kelas7', compact('mapel','siswa','semester'));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
+    public function kelas8($id)
+    {
+        $mapel = mapel::find($id);
+        $siswa = siswa::where('kelas_id', '2')->get();
+        $semester = semester::where('id', '2')->get();
+        return view('admin.tbsem.pengetahuan.kelas8', compact('mapel', 'siswa', 'semester'));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
+    public function kelas9($id)
+    {
+        $mapel = mapel::find($id);
+        $siswa = siswa::where('kelas_id', '3')->get();
+        $semester = semester::where('id', '2')->get();
+        return view('admin.tbsem.pengetahuan.kelas9', compact('mapel', 'siswa', 'semester'));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
+
     public function show()
     {
         $siswa = siswa::where('kelas_id', '1')->get();

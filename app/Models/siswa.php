@@ -24,9 +24,8 @@ class siswa extends Model
 
     public function mapel2()
     {
-        return $this->belongsToMany(mapel::class, 'mapel_siswa2')->withPivot(['pa', 'dp', 'ka', 'dk'])->withTimestamps();
+        return $this->belongsToMany(mapel::class, 'mapel_siswa2')->withPivot(['uh1', 'uh2', 't1', 't2', 't3', 't4', 'uts', 'uas', 'desk_p', 'proses', 'produk', 'pro1', 'pro2', 'desk_k'])->withTimestamps();
     }
-
     public function nilai()
     {
         return $this->hasMany(nilai::class);

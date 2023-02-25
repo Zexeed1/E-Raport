@@ -58,7 +58,7 @@
                         {{ session('berhasil') }}
                     </div>
                  @endif
-                <table class="table table-bordered">
+                {{-- <table class="table table-bordered">
                     <thead class="table-warning">
                     <tr>
                       <th rowspan="2" style="text-align: center">No</th>
@@ -123,7 +123,7 @@
                     </tr>
                     @endforeach
                     </tbody>
-                </table>
+                </table>  --}}
 
                 </div>
                 <!-- /.col -->
@@ -148,7 +148,7 @@
   </div>
 
 
-<!-- Modal --->
+{{-- <!-- Modal --->
 <div class="modal fade" id="Input" tabindex="-1" role="dialog" aria-labelledby="InputLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -282,7 +282,7 @@
     </div>
   </div>
 </div>
-@endforeach
+@endforeach --}}
 
 @stop
 

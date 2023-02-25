@@ -104,7 +104,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-windows"></i>
               <p>
-                Form Penilaian
+                Penilaian Mid
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -121,6 +121,29 @@
                   <p>Nilai Mid</p>
                 </a>
               </li>
+            </ul>
+            </li>
+            <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-windows"></i>
+              <p>
+                Penilaian Semester
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('pengetahuan') }}" class="nav-link">
+                  <i class="fa fa-lightbulb-o nav-icon"></i>
+                  <p>Pengetahuan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('sikap') }}" class="nav-link">
+                  <i class="fa fa-briefcase nav-icon"></i>
+                  <p>Keterampilan</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="{{ route('sikap') }}" class="nav-link">
                   <i class="fa fa-bar-chart nav-icon"></i>
@@ -129,12 +152,12 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('semester') }}" class="nav-link">
-                  <i class="fa fa-line-chart nav-icon"></i>
-                  <p>Nilai Semester</p>
+                  <i class="fa fa-leanpub nav-icon"></i>
+                  <p>Raport Semester</p>
                 </a>
               </li>
             </ul>
-
+            </li>
     @endif
     @if (auth()->user()->role == 'Siswa')
             <li class="nav-item">

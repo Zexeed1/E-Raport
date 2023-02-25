@@ -34,7 +34,7 @@
         <tr>
             <th>Nilai</th>
             <th>Predikat</th>
-            <th>Deskripsi</th>
+            <th>Keterangan</th>
         </tr>
         </thead>
         <tbody>
