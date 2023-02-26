@@ -39,7 +39,7 @@
     <div class="col-12">
      <div class="card bg-warning">
       <div class="card-body">
-        <h4><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Nilai Pengetahuan</h4>
+        <h4><i class="fa fa-briefcase" aria-hidden="true"></i> Nilai Keterampilan</h4>
       </div>
      </div>
     </div>
@@ -79,7 +79,7 @@
                                 <td>{{ $siswa->kelas->kelas }}</td>
                                 <td style="text-align: center">
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-pengetahuan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-keterampilan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
                                     @endif
                                 </td>
                             </tr>
@@ -106,7 +106,7 @@
                                 <td>{{ $siswa->kelas->kelas }}</td>
                                 <td style="text-align: center">
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-pengetahuan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-keterampilan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
                                     @endif
                                 </td>
                             </tr>
@@ -133,7 +133,7 @@
                                 <td>{{ $siswa->kelas->kelas }}</td>
                                 <td style="text-align: center">
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-pengetahuan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-keterampilan/{{ $siswa->id }}/siswa" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
                                     @endif
                                 </td>
                             </tr>

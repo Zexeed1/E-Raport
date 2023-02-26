@@ -73,13 +73,11 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin,Guru'], function()
 
 
     //Nilai Semester
-    Route::get('/nilai-pengetahuan', [NilaiController::class, 'pengetahuan'])->name('pengetahuan');
-    Route::get('/nilai-semester/{id}/kelas-7', [NilaiController::class, 'kelas7']);
+    Route::get('/nilai-pengetahuan', [NilaiController::class, 'pengetahuan'])->name('pengetahuan');//Nilai Pengetahuan
+    Route::get('/nilai-pengetahuan/{id}/siswa', [NilaiController::class, 'nilai_p']);
 
-    Route::get('/nilai-semester/{id}/kelas-8', [NilaiController::class, 'kelas8']);
-
-    Route::get('/nilai-semester/{id}/kelas-9', [NilaiController::class, 'kelas9']);
-
+    Route::get('/nilai-keterampilan', [NilaiController::class, 'keterampilan'])->name('keterampilan'); //Nilai keterampilan
+    Route::get('/nilai-keterampilan/{id}/siswa', [NilaiController::class, 'nilai_k']);
 
     Route::get('/nilai-semester', [NilaiController::class, 'show'])->name('semester');
     Route::get('/nilai-semester/{id}/look', [NilaiController::class, 'kasihNilai']);

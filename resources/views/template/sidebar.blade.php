@@ -139,7 +139,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('sikap') }}" class="nav-link">
+                <a href="{{ route('keterampilan') }}" class="nav-link">
                   <i class="fa fa-briefcase nav-icon"></i>
                   <p>Keterampilan</p>
                 </a>

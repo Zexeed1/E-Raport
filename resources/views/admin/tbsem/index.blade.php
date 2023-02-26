@@ -39,7 +39,7 @@
     <div class="col-12">
      <div class="card bg-info">
       <div class="card-body">
-        <h4><i class="fa fa-book" aria-hidden="true"></i> Semester</h4>
+        <h4><i class="fa fa-leanpub" aria-hidden="true"></i> Raport Semester</h4>
       </div>
      </div>
     </div>

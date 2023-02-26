@@ -75,26 +75,27 @@ class NilaiController extends Controller
     }
     public function nilai_p($id)
     {
-        $mapel = mapel::find($id);
-        $siswa = siswa::where('kelas_id', '1')->get();
+        $siswa = siswa::find($id);
+        $mapel = mapel::all();
         $semester = semester::where('id','2')->get();
-        return view('admin.tbsem.pengetahuan.kelas7', compact('mapel','siswa','semester'));
+        return view('admin.tbsem.pengetahuan.nilaip', compact('mapel','siswa','semester'));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-    public function kelas8($id)
+
+    public function keterampilan()
     {
-        $mapel = mapel::find($id);
-        $siswa1 = siswa::where('kelas_id', '2')->get();
-        $semester = semester::where('id', '2')->get();
-        return view('admin.tbsem.pengetahuan.kelas8', compact('mapel', 'siswa1', 'semester'));
+        $siswa = siswa::where('kelas_id', '1')->get();
+        $siswa1 = siswa::where('kelas_id','2')->get();
+        $siswa2 = siswa::where('kelas_id', '3')->get();
+        $mapel = mapel::all();
+        return view('admin.tbsem.keterampilan.keterampilan', compact('mapel', 'siswa', 'siswa1', 'siswa2'));
     }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-    public function kelas9($id)
+    public function nilai_k($id)
     {
-        $mapel = mapel::find($id);
-        $siswa = siswa::where('kelas_id', '3')->get();
+        $siswa = siswa::find($id);
+        $mapel = mapel::all();
         $semester = semester::where('id', '2')->get();
-        return view('admin.tbsem.pengetahuan.kelas9', compact('mapel', 'siswa', 'semester'));
+        return view('admin.tbsem.keterampilan.nilaip', compact('mapel', 'siswa', 'semester'));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 

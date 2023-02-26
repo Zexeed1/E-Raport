@@ -29,8 +29,7 @@
               <div class="row invoice-info">
                   <address>
                     @foreach ($semester as $semester)@endforeach
-                    @foreach ($siswa as $siswa )@endforeach
-                    Mata Pelajaran : {{ $mapel->mapel }}<br>
+                    Nama Peserta Didik : {{ $siswa->nama }}<br>
                     Kelas/Semester : {{ $siswa->kelas->kelas }} / {{ $semester->semester }} <br>
                     Tahun Ajaran : {{ $semester->tahun_ajar }}
                      <br>
@@ -92,31 +91,31 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($siswa->mapel2 as $siswa )
+                    @foreach ($siswa->mapel2 as $mapel )
                     @php
-                        $sum = $siswa->pivot->uh1 + $siswa->pivot->uh2;
+                        $sum = $mapel->pivot->uh1 + $mapel->pivot->uh2;
                         $average = $sum/2;
 
-                        $sum2 = $siswa->pivot->t1 + $siswa->pivot->t2 + $siswa->pivot->t3 + $siswa->pivot->t4;
+                        $sum2 = $mapel->pivot->t1 + $mapel->pivot->t2 + $mapel->pivot->t3 + $mapel->pivot->t4;
                         $average2 =$sum2/4;
 
                         $hph = ($average*0.6) + ($average2*0.4);
-                        $nilai_akhir = ((2*$hph)+$siswa->pivot->uts+$siswa->pivot->uas)/4;
+                        $nilai_akhir = ((2*$hph)+$mapel->pivot->uts+$mapel->pivot->uas)/4;
 
                     @endphp
                     <tr>
                       <td style="text-align: center">{{ $loop->iteration }}</td>
-                      <td style="text-align: center">{{ $siswa->nama }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->uh1 }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->uh2 }}</td>
+                      <td style="text-align: center">{{ $mapel->mapel }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->uh1 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->uh2 }}</td>
                       <td style="text-align: center">{{ round($average) }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->t1 }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->t2 }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->t3 }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->t4 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->t1 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->t2 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->t3 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->t4 }}</td>
                       <td style="text-align: center">{{ round($average2) }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->uts }}</td>
-                      <td style="text-align: center">{{ $siswa->pivot->uas }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->uts }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->uas }}</td>
                       <td style="text-align: center">{{ round($nilai_akhir) }}</td>
                       <td style="text-align: center">@php
                         $nilai1 = $nilai_akhir;
@@ -138,10 +137,10 @@
                             echo "TT";
                         }
                       @endphp</td>
-                      <td style="text-align: center">{{ $siswa->pivot->desk_p }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->desk_p }}</td>
                       @if (auth()->user()->role == 'Guru')
                       <td>
-                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $siswa->id }}">Edit Nilai</a>
+                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update">Edit Nilai</a>
                       </td>
                       @endif
                     </tr>
@@ -159,7 +158,7 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print ">
                 <div class="col-12">
-                  <a href="/nilai/{{ $mapel->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Print</a>
+                  <a href="#" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Print</a>
                 </div>
               </div>
             </div>
