@@ -29,9 +29,9 @@
               <div class="row invoice-info">
                   <address>
                     @foreach ($semester as $semester)@endforeach
-                    @foreach ($siswa1 as $siswa1 )@endforeach
+                    @foreach ($siswa as $siswa )@endforeach
                     Mata Pelajaran : {{ $mapel->mapel }}<br>
-                    Kelas/Semester : {{ $siswa1->kelas->kelas }} / {{ $semester->semester }} <br>
+                    Kelas/Semester : {{ $siswa->kelas->kelas }} / {{ $semester->semester }} <br>
                     Tahun Ajaran : {{ $semester->tahun_ajar }}
                      <br>
                     <br>
@@ -92,7 +92,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($mapel->siswa2 as $siswa )
+                    @foreach ($siswa->mapel2 as $siswa )
                     @php
                         $sum = $siswa->pivot->uh1 + $siswa->pivot->uh2;
                         $average = $sum/2;
@@ -106,7 +106,7 @@
                     @endphp
                     <tr>
                       <td style="text-align: center">{{ $loop->iteration }}</td>
-                      <td style="text-align: center">{{ $siswa1->nama }}</td>
+                      <td style="text-align: center">{{ $siswa->nama }}</td>
                       <td style="text-align: center">{{ $siswa->pivot->uh1 }}</td>
                       <td style="text-align: center">{{ $siswa->pivot->uh2 }}</td>
                       <td style="text-align: center">{{ round($average) }}</td>

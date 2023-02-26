@@ -67,13 +67,16 @@ class NilaiController extends Controller
     //---------------------------------Nilai Semester-------------------------------------//
     public function pengetahuan()
     {
+        $siswa = siswa::where('kelas_id', '1')->get();
+        $siswa1 = siswa::where('kelas_id', '2')->get();
+        $siswa2 = siswa::where('kelas_id', '3')->get();
         $mapel = mapel::all();
-        return view('admin.tbsem.pengetahuan.pengetahuan',compact('mapel'));
+        return view('admin.tbsem.pengetahuan.pengetahuan',compact('mapel','siswa','siswa1','siswa2'));
     }
-    public function kelas7($id)
+    public function nilai_p($id)
     {
         $mapel = mapel::find($id);
-        $siswa = siswa::where('kelas_id','=', '1')->get();
+        $siswa = siswa::where('kelas_id', '1')->get();
         $semester = semester::where('id','2')->get();
         return view('admin.tbsem.pengetahuan.kelas7', compact('mapel','siswa','semester'));
     }
