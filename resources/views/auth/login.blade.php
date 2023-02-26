@@ -15,15 +15,23 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+    <style>
+         body{
+            background-image: url(./images/background2.jpg);
+
+            height: 100%;
+         }
+    </style>
 <div class="login-box">
-  <div class="login-logo">
-    <img src="/images/logo-fis.png" alt="logo_sekolah" width="200px">
-  </div>
+
   <!-- /.login-logo -->
-  @include('template.preloader')
+  @include('template.prelod')
   <div class="card">
     <div class="card-body rounded login-card-body">
-      <p class="login-box-msg">Aplikasi E-Rapor</p>
+        <div class="login-logo">
+            <img src="/images/logo-fis.png" alt="logo_sekolah" width="200px">
+        </div>
+      <p class="login-box-msg">Aplikasi E-Raport</p>
         @if (session('success'))
         <div class="container">
             <div class="row">
@@ -51,11 +59,11 @@
             @foreach ($semester2 as $semester2 )@endforeach
         <div class="form-group">
           <label for="email" class="form-label">Username</label><i class="fas fa-user col-2"></i>
-          <input type="text" class="form-control" value="{{ Session::get('email') }}" placeholder="Masukkan username" name="email">
+          <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Session::get('email') }}" placeholder="Masukkan username" name="email">
         </div>
         <div class="form-group">
           <label for="password" class="form-label"></i>Password</label><i class="fas fa-key col-2"></i>
-          <input type="password" class="form-control" placeholder="Masukkan Password" name="password">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password" name="password">
         </div>
         <div class="form-group">
           <label class="form-label"></i>Tahun Ajaran - Semester</label><i class="fas fa-graduation-cap col-2"></i>
@@ -64,7 +72,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12 mb-3">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Masuk</button>
+            <button type="submit" name="submit" class="btn btn-success btn-block">Masuk</button>
           </div>
           <!-- /.col -->
         </div>

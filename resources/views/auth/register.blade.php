@@ -15,6 +15,16 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition register-page">
+    <style>
+         body{
+            background-image: url(./images/background2.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100%;
+         }
+    </style>
 <div class="register-box">
   <div class="register-logo">
     <img src="/images/logo-fis.png" alt="logo_sekolah" width="200px">

@@ -111,7 +111,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('siswa') }}" class="nav-link">
-                  <i class="fa fa-database nav-icon"></i>
+                  <i class="fa fa-user-circle nav-icon"></i>
                   <p>Data Siswa</p>
                 </a>
               </li>
