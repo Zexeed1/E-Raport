@@ -1,5 +1,9 @@
 @extends('template.LTE')
-
+@section('header')
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+@stop
 @section('content')
 @include('template.preloader')
 <div class="container">
@@ -30,32 +34,34 @@
                                 {{ session('sukses') }}
                             </div>
                         @endif
-                        <table class="table table-active" id="tb">
+                        <table class="table table-striped" id="example1">
                             <thead>
                                 <tr>
-                                <th>#</th>
-                                <th>Nama Guru</th>
-                                <th>Username</th>
-                                <th>Jenis Kelamin</th>
-                                <th>No.HP</th>
-                                <th>Mapel</th>
-                                <th>Agama</th>
-                                <th>Alamat</th>
+                                <th style="text-align: center">No</th>
+                                <th style="text-align: center">Foto Guru</th>
+                                <th style="text-align: center">Nama Guru</th>
+                                <th style="text-align: center">Username</th>
+                                <th style="text-align: center">Jenis Kelamin</th>
+                                <th style="text-align: center">No.HP</th>
+                                <th style="text-align: center">Mapel</th>
+                                <th style="text-align: center">Agama</th>
+                                <th style="text-align: center">Alamat</th>
                                 <th style="text-align: center">Tools</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($guru as $guru )
                                     <tr>
-                                        <th>{{ $loop->iteration }}</th>
-                                        <td>{{ $guru->nama }}</td>
-                                        <td>{{ $guru->email }}</td>
-                                        <td>{{ $guru->jk }}</td>
-                                         <td>{{ $guru->nohp }}</td>
-                                        <td>{{ $guru->mapel->mapel }}</td>
-                                        <td>{{ $guru->agama }}</td>
-                                        <td>{{ $guru->alamat }}</td>
-                                        <td>
+                                        <th style="text-align: center">{{ $loop->iteration }}</th>
+                                        <td style="text-align: center"><img class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.$guru->avatar) }}" alt="User profile picture"></td>
+                                        <td style="text-align: center">{{ $guru->nama }}</td>
+                                        <td style="text-align: center">{{ $guru->email }}</td>
+                                        <td style="text-align: center">{{ $guru->jk }}</td>
+                                        <td style="text-align: center">{{ $guru->nohp }}</td>
+                                        <td style="text-align: center">{{ $guru->mapel->mapel }}</td>
+                                        <td style="text-align: center">{{ $guru->agama }}</td>
+                                        <td style="text-align: center">{{ $guru->alamat }}</td>
+                                        <td style="text-align: center">
                                             <a href="/guru/profile/{{ $guru->id }}" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="/guru/edit/{{ $guru->id }}" type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
                                             <a href="/guru/delete/{{ $guru->id }}" type="button" class="btn btn-danger btn-sm toastDafaultDanger"><i class="fas fa-trash"></i></a>
@@ -71,3 +77,28 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+@stop

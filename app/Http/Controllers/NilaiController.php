@@ -95,7 +95,7 @@ class NilaiController extends Controller
         $siswa = siswa::find($id);
         $mapel = mapel::all();
         $semester = semester::where('id', '2')->get();
-        return view('admin.tbsem.keterampilan.nilaip', compact('mapel', 'siswa', 'semester'));
+        return view('admin.tbsem.keterampilan.nilaik', compact('mapel', 'siswa', 'semester'));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 

@@ -132,7 +132,7 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print ">
                 <div class="col-12">
-                  <a href="/nilai/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Print</a>
+                  <a href="/nilai/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Cetak Raport Mid</a>
                 </div>
               </div>
             </div>

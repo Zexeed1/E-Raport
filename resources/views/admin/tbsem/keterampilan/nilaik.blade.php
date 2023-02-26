@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-12">
             <div class="callout callout-light">
-              <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Halaman Penilaian Pengetahuan</h4>
+              <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Halaman Penilaian Keterampilan</h4>
               SMPIT Future Islamic School
               <small class="float-right"><span id="tanggalwaktu"></span></small>
             </div>
@@ -61,17 +61,15 @@
                         {{ session('error') }}
                     </div>
                  @endif
-                <table class="table table-bordered">
-                    <thead class="table-info">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-danger">
                     <tr>
                       <th rowspan="2" style="text-align: center">No</th>
                       <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
-                      <th colspan="2" style="text-align: center">Tes Tertulis</th>
-                      <th rowspan="2" style="text-align: center"><u>Rerata TT</u></th>
-                      <th colspan="4" style="text-align: center">Tugas/PR</th>
-                      <th rowspan="2" style="text-align: center"><u>Rerata Tugas</u></th>
-                      <th rowspan="2" style="text-align: center">UTS</th>
-                      <th rowspan="2" style="text-align: center">UAS</th>
+                      <th colspan="2" style="text-align: center">Kinerja</th>
+                      <th rowspan="2" style="text-align: center"><u>Rerata Kinerja</u></th>
+                      <th colspan="2" style="text-align: center">Proyek</th>
+                      <th rowspan="2" style="text-align: center"><u>Rerata Proyek</u></th>
                       <th colspan="2" style="text-align: center">Hasil Penilaian Akhir</th>
                       <th rowspan="2" style="text-align: center"><u>Ket(T/TT)</u></th>
                       <th rowspan="2" style="text-align: center">Deskripsi</th>
@@ -80,12 +78,10 @@
                       @endif
                     </tr>
                     <tr>
-                        <th style="text-align: center">TT1</th>
-                        <th style="text-align: center">TT2</th>
-                        <th style="text-align: center">T1</th>
-                        <th style="text-align: center">T2</th>
-                        <th style="text-align: center">T3</th>
-                        <th style="text-align: center">T4</th>
+                        <th style="text-align: center">Proses</th>
+                        <th style="text-align: center">Product</th>
+                        <th style="text-align: center">P1</th>
+                        <th style="text-align: center">P2</th>
                         <th style="text-align: center"><u>Angka</u></th>
                         <th style="text-align: center"><u>Predikat</u></th>
                     </tr>
@@ -106,16 +102,12 @@
                     <tr>
                       <td style="text-align: center">{{ $loop->iteration }}</td>
                       <td style="text-align: center">{{ $mapel->mapel }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->uh1 }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->uh2 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->proses }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->produk }}</td>
                       <td style="text-align: center">{{ round($average) }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->t1 }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->t2 }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->t3 }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->t4 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->pro1 }}</td>
+                      <td style="text-align: center">{{ $mapel->pivot->pro2 }}</td>
                       <td style="text-align: center">{{ round($average2) }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->uts }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->uas }}</td>
                       <td style="text-align: center">{{ round($nilai_akhir) }}</td>
                       <td style="text-align: center">@php
                         $nilai1 = $nilai_akhir;

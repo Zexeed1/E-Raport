@@ -87,7 +87,7 @@
                                     <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-info btn-sm">Lihat Nilai</a>
                                     @endif
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Lihat dan Cetak Raport</a>
                                     @endif
                                 </td>
                             </tr>
@@ -122,7 +122,7 @@
                                     <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-info btn-sm">Lihat Nilai</a>
                                     @endif
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Lihat dan Cetak Raport</a>
                                     @endif
                                 </td>
                             </tr>
@@ -157,7 +157,7 @@
                                     <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-info btn-sm">Lihat Nilai</a>
                                     @endif
                                     @if (auth()->user()->role == 'Guru')
-                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Beri Nilai</a>
+                                    <a href="/nilai-semester/{{ $mat->id }}/look" type="button" class="btn btn-primary btn-sm">Lihat dan Cetak Raport</a>
                                     @endif
                                 </td>
                             </tr>

@@ -35,10 +35,11 @@
                                 {{ session('sukses') }}
                             </div>
                         @endif
-                        <table class="table" id="example1">
+                        <table class="table table-striped" id="example1">
                             <thead>
                                 <tr>
                                 <th style="text-align: center">No</th>
+                                <th style="text-align: center">Foto Siswa</th>
                                 <th style="text-align: center">Nama Siswa</th>
                                 <th style="text-align: center">Username</th>
                                 <th style="text-align: center">NIS</th>
@@ -55,6 +56,7 @@
                                 @foreach ($siswa as $murid )
                                     <tr>
                                         <th style="text-align: center">{{ $loop->iteration }}</th>
+                                        <td style="text-align: center"><img class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.$murid->avatar) }}" alt="User profile picture"></td>
                                         <td style="text-align: center">{{ $murid->nama }}</td>
                                         <td style="text-align: center">{{ $murid->email }}</td>
                                         <td style="text-align: center">{{ $murid->nis }}</td>
