@@ -20,7 +20,8 @@
   <img class="float-left" src="/images/logo-fis.png" width="150" height="80">
   <p style="text-align: center; font-size:x-large; font:bold;"><b>PENCAPAIAN KOMPETENSI PESERTA DIDIK</b><br>SMPIT Future Islamic School</p><hr>@foreach ($semester2 as $semester )@endforeach
 
-  <div class="card col-2">
+<div class="card col-4">
+  <div class="card-body">
     <div class="col-12">
         <p>Nama : {{ $siswa->nama }}</p>
         <p>kelas : {{ $siswa->kelas->kelas }}</p>
@@ -28,7 +29,8 @@
         <p>Tahun Ajaran : {{ $semester->tahun_ajar }}</p>
         <p>Semester : {{ $semester->semester }}</p>
     </div>
-  </div><hr>
+  </div>
+</div><hr>
 
   <b>A. SIKAP</b>
   <div class="row">
@@ -56,71 +58,84 @@
   <b>B. PENGETAHUAN DAN KETERAMPILAN</b>
   <div class="row">
     <div class="col-12">
-    <table class="table table-bordered">
-        <thead class="table-warning">
-        <tr>
-            <th rowspan="2" style="text-align: center">No</th>
-            <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
-            <th colspan="3" style="text-align: center">Pengetahuan</th>
-            <th colspan="3" style="text-align: center">Keterampilan</th>
-            @if (auth()->user()->role == 'Guru')
-            <th rowspan="2" style="text-align: center">Nilai Akhir</th>
-            @endif
-        </tr>
-        <tr>
-            <th style="text-align: center">Angka</th>
-            <th style="text-align: center">Predikat</th>
-            <th style="text-align: center">Deksripsi</th>
-            <th style="text-align: center">Angka</th>
-            <th style="text-align: center">Predikat</th>
-            <th style="text-align: center">Deksripsi</th>
-        </tr>
-        </thead>
-        @foreach ($siswa->mapel2 as $mapel )
-        @php
-            $jumlah = $mapel->pivot->pa + $mapel->pivot->ka;
-            $na = $jumlah/2;
-        @endphp
-        <tr>
-            <td style="text-align: center">{{ $loop->iteration }}</td>
-            <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
-            <td style="text-align: center">{{ $mapel->pivot->pa }}</td>
-            <td style="text-align: center">@php
-            $nilai1 = $mapel->pivot->pa;
-            if ($nilai1 == "") {
-                echo "";
-            } else if ($nilai1 >= 0 && $nilai1 <= 74) {
-                echo 'D';
-            } else if ($nilai1 >= 75 && $nilai1 <= 82) {
-                echo 'C';
-            } else if ($nilai1 >= 83 && $nilai1 <= 90) {
-                echo 'B';
-            } else if ($nilai1 >= 91 && $nilai1 <= 100) {
-                echo 'A';
-            }
-            @endphp</td>
-            <td style="text-align: justify">{{ $mapel->pivot->dp }}</td>
-            <td style="text-align: center">{{ $mapel->pivot->ka }}</td>
-            <td style="text-align: center">@php
-            $nilai2 = $mapel->pivot->ka;
-            if ($nilai2 == "") {
-                echo "";
-            } else if ($nilai2 >= 0 && $nilai2 <= 74) {
-                echo 'D';
-            } else if ($nilai2 >= 75 && $nilai2 <= 82) {
-                echo 'C';
-            } else if ($nilai2 >= 83 && $nilai2 <= 90) {
-                echo 'B';
-            } else if ($nilai2 >= 91 && $nilai2 <= 100) {
-                echo 'A';
-            }
-        @endphp</td>
-            <td style="text-align: justify">{{ $mapel->pivot->dk }}</td>
-            <td>{{ $na }}</td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+                <table class="table table-bordered">
+                    <thead class="table-warning">
+                    <tr>
+                      <th rowspan="2" style="text-align: center">No</th>
+                      <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
+                      <th colspan="3" style="text-align: center">Pengetahuan</th>
+                      <th colspan="3" style="text-align: center">Keterampilan</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align: center">Angka</th>
+                        <th style="text-align: center">Predikat</th>
+                        <th style="text-align: center">Deksripsi</th>
+                        <th style="text-align: center">Angka</th>
+                        <th style="text-align: center">Predikat</th>
+                        <th style="text-align: center">Deksripsi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($siswa->mapel2 as $mapel )
+                    @php
+                        $sum = $mapel->pivot->uh1 + $mapel->pivot->uh2;
+                        $average = $sum/2;
+
+                        $sum2 = $mapel->pivot->t1 + $mapel->pivot->t2 + $mapel->pivot->t3 + $mapel->pivot->t4;
+                        $average2 =$sum2/4;
+
+                        $hph = ($average*0.6) + ($average2*0.4);
+                        $nilai_akhir = ((2*$hph)+$mapel->pivot->uts+$mapel->pivot->uas)/4;
+                    @endphp
+
+                    <tr>
+                      <td style="text-align: center">{{ $loop->iteration }}</td>
+                      <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
+                      <td style="text-align: center">{{ round($nilai_akhir)}}</td>
+                      <td style="text-align: center">@php
+                        $nilai1 = $nilai_akhir;
+                        if ($nilai1 == "") {
+                            echo "";
+                        } else if ($nilai1 >= 0 && $nilai1 <= 74) {
+                            echo 'D';
+                        } else if ($nilai1 >= 74 && $nilai1 <= 82) {
+                            echo 'C';
+                        } else if ($nilai1 >= 82 && $nilai1 <= 90) {
+                            echo 'B';
+                        } else if ($nilai1 >= 90 && $nilai1 <= 100) {
+                            echo 'A';
+                        }
+                        @endphp</td>
+                      <td style="text-align: justify">{{ $mapel->pivot->desk_p }}</td>
+                    @php
+                        $sum1 = $mapel->pivot->proses + $mapel->pivot->produk;
+                        $average3 = $sum1/2;
+
+                        $sum3 = $mapel->pivot->pro1 + $mapel->pivot->pro2;
+                        $average4 =$sum3/2;
+                        $nilai_akhir1 = $average3+$average4;
+                        $nilai = $nilai_akhir1/2;
+                    @endphp
+                      <td style="text-align: center">{{ round($nilai) }}</td>
+                      <td style="text-align: center">@php
+                        $nilai2 = $nilai;
+                        if ($nilai2 == "") {
+                            echo "";
+                        } else if ($nilai2 >= 0 && $nilai2 <= 74) {
+                            echo 'D';
+                        } else if ($nilai2 >= 74 && $nilai2 <= 82) {
+                            echo 'C';
+                        } else if ($nilai2 >= 82 && $nilai2 <= 90) {
+                            echo 'B';
+                        } else if ($nilai2 >= 90 && $nilai2 <= 100) {
+                            echo 'A';
+                        }
+                    @endphp</td>
+                      <td style="text-align: justify">{{ $mapel->pivot->desk_k }}</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
     </div>
   </div><br>
 

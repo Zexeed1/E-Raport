@@ -18,7 +18,10 @@
     <style>
          body{
             background-image: url(./images/background2.jpg);
-
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
             height: 100%;
          }
     </style>

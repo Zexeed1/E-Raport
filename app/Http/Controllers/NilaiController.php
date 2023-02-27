@@ -86,7 +86,7 @@ class NilaiController extends Controller
         $mapel = mapel::findOrFail($request->mapel_id);
 
         // menambahkan kembali relasi dengan data baru
-        $siswa->mapel2()->attach($mapel, ['uh1' => $request->uh1, 'uh2' => $request->uh2, 't1' => $request->t1, 't2' => $request->t2, 't3' => $request->t3, 't4' => $request->t4, 'uts' => $request->uts, 'uas' => $request->uas, 'desk_p' => $request->desk_p, 'proses' => $request->proses, 'produk' => $request->produk, 'pro1' => $request->pro1, 'pro2' => $request->pro2, 'desk_k' => $request->desk_k]);
+        $siswa->mapel2()->attach($mapel, ['uh1' => $request->uh1, 'uh2' => $request->uh2, 't1' => $request->t1, 't2' => $request->t2, 't3' => $request->t3, 't4' => $request->t4, 'uts' => $request->uts, 'uas' => $request->uas, 'desk_p' => $request->desk_p]);
         return redirect()->back()->with('success', 'Data nilai berhasil di input');
     }
     public function editp(Request $request, $id)
@@ -95,7 +95,7 @@ class NilaiController extends Controller
         $mapel = mapel::findOrFail($request->mapel_id);
 
         // menambahkan kembali relasi dengan data baru
-        $siswa->mapel2()->updateExistingPivot($mapel, ['uh1' => $request->uh1, 'uh2' => $request->uh2, 't1' => $request->t1, 't2' => $request->t2, 't3' => $request->t3, 't4' => $request->t4, 'uts' => $request->uts, 'uas' => $request->uas, 'desk_p'=>$request->desk_p,'proses' => $request->proses, 'produk' => $request->produk, 'pro1' => $request->pro1, 'pro2' => $request->pro2, 'desk_k' => $request->desk_k]);
+        $siswa->mapel2()->updateExistingPivot($mapel, ['uh1' => $request->uh1, 'uh2' => $request->uh2, 't1' => $request->t1, 't2' => $request->t2, 't3' => $request->t3, 't4' => $request->t4, 'uts' => $request->uts, 'uas' => $request->uas, 'desk_p'=>$request->desk_p]);
         return redirect()->back()->with('berhasil', 'Data nilai berhasil di update');
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
@@ -121,7 +121,7 @@ class NilaiController extends Controller
         $mapel = mapel::findOrFail($request->mapel_id);
 
         // menambahkan kembali relasi dengan data baru
-        $siswa->mapel2()->updateExistingPivot($mapel, ['uh1' => $request->uh1, 'uh2' => $request->uh2, 't1' => $request->t1, 't2' => $request->t2, 't3' => $request->t3, 't4' => $request->t4, 'uts' => $request->uts, 'uas' => $request->uas, 'proses' => $request->proses, 'produk' => $request->produk, 'pro1' => $request->pro1, 'pro2' => $request->pro2, 'desk_k' => $request->desk_k]);
+        $siswa->mapel2()->updateExistingPivot($mapel->id, ['proses' => $request->proses, 'produk' => $request->produk, 'pro1' => $request->pro1, 'pro2' => $request->pro2, 'desk_k' => $request->desk_k]);
         return redirect()->back()->with('berhasil', 'Data nilai berhasil di update');
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//

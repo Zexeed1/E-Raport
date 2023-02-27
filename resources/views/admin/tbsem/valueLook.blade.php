@@ -83,8 +83,8 @@
 
                         $hph = ($average*0.6) + ($average2*0.4);
                         $nilai_akhir = ((2*$hph)+$mapel->pivot->uts+$mapel->pivot->uas)/4;
-
                     @endphp
+
                     <tr>
                       <td style="text-align: center">{{ $loop->iteration }}</td>
                       <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
@@ -104,9 +104,18 @@
                         }
                         @endphp</td>
                       <td style="text-align: justify">{{ $mapel->pivot->desk_p }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->ka }}</td>
+                    @php
+                        $sum1 = $mapel->pivot->proses + $mapel->pivot->produk;
+                        $average3 = $sum1/2;
+
+                        $sum3 = $mapel->pivot->pro1 + $mapel->pivot->pro2;
+                        $average4 =$sum3/2;
+                        $nilai_akhir1 = $average3+$average4;
+                        $nilai = $nilai_akhir1/2;
+                    @endphp
+                      <td style="text-align: center">{{ round($nilai) }}</td>
                       <td style="text-align: center">@php
-                        $nilai2 = $mapel->pivot->ka;
+                        $nilai2 = $nilai;
                         if ($nilai2 == "") {
                             echo "";
                         } else if ($nilai2 >= 0 && $nilai2 <= 74) {
@@ -119,7 +128,7 @@
                             echo 'A';
                         }
                     @endphp</td>
-                      <td style="text-align: justify">{{ $mapel->pivot->dk }}</td>
+                      <td style="text-align: justify">{{ $mapel->pivot->desk_k }}</td>
                     </tr>
                     @endforeach
                     </tbody>
