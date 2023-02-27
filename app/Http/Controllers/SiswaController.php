@@ -31,7 +31,7 @@ class SiswaController extends Controller
         $dataa = [];
         foreach ($mapel as $mata){
             $kategori[] = $mata->mapel;
-            $dataa[] = $siswa->mapel2()->wherePivot('mapel_id',$mata->id)->first()->pivot->pa;
+            $dataa[] = $siswa->mapel2()->wherePivot('mapel_id',$mata->id)->first()->pivot->uas;
         }
         // dd($data);
         return view('admin.tbsiswa.profile', compact('siswa','mapel','categories', 'data','kategori','dataa'));
