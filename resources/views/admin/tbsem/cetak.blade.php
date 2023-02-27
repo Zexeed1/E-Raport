@@ -65,6 +65,7 @@
                       <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
                       <th colspan="3" style="text-align: center">Pengetahuan</th>
                       <th colspan="3" style="text-align: center">Keterampilan</th>
+                      <th rowspan="2" style="text-align: center">Nilai Akhir</th>
                     </tr>
                     <tr>
                         <th style="text-align: center">Angka</th>
@@ -90,7 +91,7 @@
 
                     <tr>
                       <td style="text-align: center">{{ $loop->iteration }}</td>
-                      <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
+                      <td>{{ $mapel->kode_mapel }} - {{ $mapel->mapel }} ({{ $mapel->kd_singkat }})</td>
                       <td style="text-align: center">{{ round($nilai_akhir)}}</td>
                       <td style="text-align: center">@php
                         $nilai1 = $nilai_akhir;
@@ -132,6 +133,11 @@
                         }
                     @endphp</td>
                       <td style="text-align: justify">{{ $mapel->pivot->desk_k }}</td>
+                    @php
+                        $na = $nilai_akhir+$nilai;
+                        $rata = $na/2;
+                    @endphp
+                      <td style="text-align: center"><b>{{ decimal($rata) }}</b></td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -164,7 +170,7 @@
     </div>
 </div>
 <div class="box float-right">
-    <p style="text-align: center">Pekanbaru, <span id="tanggalwaktu"></p>
+    <p style="text-align: justify">Pekanbaru, <span id="tanggalwaktu"></p>
     <div style="text-align: center">
         <p>Kepala Sekolah SMPIT FIS</p>
         <br><br><br><br>
@@ -178,8 +184,8 @@
     var dt = new Date();
     document.getElementById("tanggalwaktu").innerHTML = dt.toLocaleDateString();
     </script>
-	<script>
+	{{-- <script>
 		window.print();
-	</script>
+	</script> --}}
   </body>
 </html>

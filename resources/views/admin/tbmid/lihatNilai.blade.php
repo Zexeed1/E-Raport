@@ -2,147 +2,132 @@
 
 @section('content')
 <section class="content">
-      <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="callout callout-success">
+          <h4><i class="fa fa-university" aria-hidden="true"></i> Penilaian Mid Semester</h4>
+            Halaman Penilaian Raport Mid Semester
+          <small class="float-right"><span id="tanggalwaktu"></span></small>
+        </div>
+        <!-- Main content -->
+        <div class="invoice p-3 mb-3">
+        <!-- title row -->
         <div class="row">
           <div class="col-12">
-            <div class="callout callout-success">
-              <h4><i class="fa fa-university" aria-hidden="true"></i> Halaman Rapor Mid Semester</h4>
-              Masukkan Nilai yang sesuai!!
-              <small class="float-right"><span id="tanggalwaktu"></span></small>
+            <h4>
+              <i class="fa fa-graduation-cap" aria-hidden="true"></i> Data Siswa
+                @if (auth()->user()->role == 'Guru')
+                  <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input">Beri Nilai</a></small>
+                @endif
+              </h4>
+          </div><!-- /.col-12 -->
+        </div><!-- /.row -->
+        <!-- info row -->
+        <div class="row invoice-info">
+          <address>
+            Nama      : {{ $siswa->nama }}<br>
+            Kelas : {{ $siswa->kelas->kelas }} <br>
+            <br><br>
+          </address>
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="col-2">
+            <p class="text-muted well well-lg shadow-sm" style="margin-top: 10px;">
+              Note Guru : <br>
+              KKM = 75 *
+            </p>
+          </div><!-- /.col -->
+        </div> <!-- /.row -->
+        <!-- Table row -->
+        <div class="row">
+          <div class="col-12">
+            @if (session('success'))
+            <div class="alert alert-success" role="alert">
+              {{ session('success') }}
             </div>
- <!-- Main content -->
-            <div class="invoice p-3 mb-3">
-              <!-- title row -->
-              <div class="row">
-                <div class="col-12">
-                  <h4>
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i> Data Siswa
-                    @if (auth()->user()->role == 'Guru')
-                    <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input">Beri Nilai</a></small>
-                    @endif
-                  </h4>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- info row -->
-              <div class="row invoice-info">
-                  <address>
-                    Nama      : {{ $siswa->nama }}<br>
-                    Kelas : {{ $siswa->kelas->kelas }} <br>
-                     <br>
-                    <br>
-                  </address>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              <div class="row">
-                <div class="col-2">
-                  <p class="text-muted well well-lg shadow-sm" style="margin-top: 10px;">
-                    Note Guru : <br>
-                    KKM = 75 *
-                  </p>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              <!-- Table row -->
-              <div class="row">
-                <div class="col-12">
-                 @if (session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                 @endif
-                 @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('error') }}
-                    </div>
-                 @endif
-                <table class="table table-bordered">
-                    <thead class="table-info">
-                    <tr>
-                      <th rowspan="2" style="text-align: center">No</th>
-                      <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
-                      <th colspan="2" style="text-align: center">PP</th>
-                      <th rowspan="2" style="text-align: center">Rt PP</th>
-                      <th rowspan="2" style="text-align: center">UTS</th>
-                      <th rowspan="2" style="text-align: center">NA</th>
-                      <th rowspan="2" style="text-align: center">Perform</th>
-                      <th rowspan="2" style="text-align: center">Project</th>
-                      <th rowspan="2" style="text-align: center">Product</th>
-                      <th rowspan="2" style="text-align: center">Sikap</th>
-                      <th rowspan="2" style="text-align: center">Jumlah</th>
-                      <th rowspan="2" style="text-align: center">Nilai Rapor</th>
-                      @if (auth()->user()->role == 'Guru')
-                      <th rowspan="2" style="text-align: center">Tool</th>
-                      @endif
-                    </tr>
-                    <tr>
-                        <th style="text-align: center">Kuis</th>
-                        <th style="text-align: center">UH</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($siswa->mapel as $mapel )
-                     @php
-                    $jumlah = $mapel->pivot->kuis + $mapel->pivot->ulangan;
-                    $rataRata = $jumlah/2;
-
-                    $jumlah1 = $mapel->pivot->uts + $rataRata;
-                    $na = $jumlah1/2
-                    @endphp
-                    @php
-                    $jumlah2 = $mapel->pivot->kuis + $mapel->pivot->ulangan + $mapel->pivot->uts + $mapel->pivot->performance + $mapel->pivot->project + $mapel->pivot->product + $mapel->pivot->sikap;
-                    $total = $jumlah2;
-
-                    $jumlah3 = $mapel->pivot->kuis + $mapel->pivot->ulangan + $mapel->pivot->uts + $mapel->pivot->performance + $mapel->pivot->project + $mapel->pivot->product + $mapel->pivot->sikap;
-                    $subtotal = $jumlah3/7;
-                    @endphp
-                    <tr>
-                      <td style="text-align: center">{{ $loop->iteration }}</td>
-                      <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->kuis }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->ulangan }}</td>
-                      <td style="text-align: center">{{ $rataRata }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->uts }}</td>
-                      <td style="text-align: center">{{ $na }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->performance }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->project }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->product }}</td>
-                      <td style="text-align: center">{{ $mapel->pivot->sikap }}</td>
-                      <td style="text-align: center">{{ $total }}</td>
-                      <td style="text-align: center">{{ round($subtotal) }}</td>
-                      @if (auth()->user()->role == 'Guru')
-                      <td>
-                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}">Edit Nilai</a>
-                      </td>
-                      @endif
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-
-
-              <!-- this row will not appear when printing -->
-              <div class="row no-print ">
-                <div class="col-12">
-                  <a href="/nilai/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Cetak Raport Mid</a>
-                </div>
-              </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('error') }}
             </div>
-            <!-- /.invoice -->
+            @endif
+            <table class="table table-bordered">
+            <thead class="table-info">
+            <tr>
+                <th rowspan="2" style="text-align: center">No</th>
+                <th rowspan="2" style="text-align: center">Mata Pelajaran</th>
+                <th colspan="2" style="text-align: center">PP</th>
+                <th rowspan="2" style="text-align: center"><u>Rerata PP</u></th>
+                <th rowspan="2" style="text-align: center">UTS</th>
+                <th rowspan="2" style="text-align: center"><u>NA</u></th>
+                <th rowspan="2" style="text-align: center">Perform</th>
+                <th rowspan="2" style="text-align: center">Project</th>
+                <th rowspan="2" style="text-align: center">Product</th>
+                <th rowspan="2" style="text-align: center">Sikap</th>
+                <th rowspan="2" style="text-align: center"><u>Jumlah</u></th>
+                <th rowspan="2" style="text-align: center"><u>Nilai Raport</u></th>
+                @if (auth()->user()->role == 'Guru')
+                <th rowspan="2" style="text-align: center">Tool</th>
+                @endif
+            </tr>
+            <tr>
+                <th style="text-align: center">Kuis</th>
+                <th style="text-align: center">UH</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($siswa->mapel as $mapel )
+            @php
+              $jumlah = $mapel->pivot->kuis + $mapel->pivot->ulangan;
+              $rataRata = $jumlah/2;
+
+              $jumlah1 = $mapel->pivot->uts + $rataRata;
+              $na = $jumlah1/2
+            @endphp
+            @php
+              $jumlah2 = $mapel->pivot->kuis + $mapel->pivot->ulangan + $mapel->pivot->uts + $mapel->pivot->performance + $mapel->pivot->project + $mapel->pivot->product + $mapel->pivot->sikap;
+              $total = $jumlah2;
+
+              $jumlah3 = $mapel->pivot->kuis + $mapel->pivot->ulangan + $mapel->pivot->uts + $mapel->pivot->performance +   $mapel->pivot->project + $mapel->pivot->product + $mapel->pivot->sikap;
+              $subtotal = $jumlah3/7;
+            @endphp
+              <tr>
+                <td style="text-align: center">{{ $loop->iteration }}</td>
+                <td>{{ $mapel->kode_mapel }} - {{ $mapel->kd_singkat }}</td>
+                <td style="text-align: center">{{ $mapel->pivot->kuis }}</td>
+                <td style="text-align: center">{{ $mapel->pivot->ulangan }}</td>
+                <td style="text-align: center"><b>{{ $rataRata }}</b></td>
+                <td style="text-align: center">{{ $mapel->pivot->uts }}</td>
+                <td style="text-align: center"><b>{{ $na }}</b></td>
+                <td style="text-align: center">{{ $mapel->pivot->performance }}</td>
+                <td style="text-align: center">{{ $mapel->pivot->project }}</td>
+                <td style="text-align: center">{{ $mapel->pivot->product }}</td>
+                <td style="text-align: center">{{ $mapel->pivot->sikap }}</td>
+                <td style="text-align: center"><b>{{ $total }}</b></td>
+                <td style="text-align: center"><b>{{ round($subtotal) }}</b></td>
+                @if (auth()->user()->role == 'Guru')
+                <td style="text-align: center">
+                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}">Edit Nilai</a>
+                </td>
+                @endif
+              </tr>
+              @endforeach
+              </tbody>
+            </table>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+        <!-- Ini row untuk print raport mid -->
+        <div class="row no-print ">
+          <div class="col-12">
+            <a href="/nilai/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Cetak Raport Mid</a>
+          </div>
+        </div>
+        </div><!-- /.invoice -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section><!-- /.content -->
 
 
 <!-- Modal --->
@@ -156,38 +141,60 @@
         </button>
       </div>
       <div class="modal-body">
-          <form action="/nilai/{{ $siswa->id }}/addNilai" method="POST">
+        <form action="/nilai/{{ $siswa->id }}/addNilai" method="POST">
           @csrf
             <div class="container">
               <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">{{ $siswa->nama }} ID</label>
-                        <input type="text" class="form-control" name="siswa_id" Value="{{ $siswa->id }}">(Jangan diganti, Jika ingin menilai siswa ini)
+                  <div class="form-group">
+                    <label class="form-label">Nama Siswa</label>
+                    <input type="text" class="form-control" name="siswa_id" value="{{ $siswa->id }} - {{ $siswa->nama }}">
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-header">
+                        <h1 class="card-title"><b>Penilaian Pengetahuan</b></h1>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"><i class="fas fa-minus"></i></button>
+                        </div>
                       </div>
                       <div class="form-group">
-                        <label class="form-label">Mata Pelajaran</label>
-                        <select class="form-control" name="mapel_id">
-                          <option selected disabled>Pilih Mata Pelajaran</option>
-                          @foreach ($matapelajaran as $matapelajaran)
-                          <option value="{{ $matapelajaran->id }}">{{ $matapelajaran->mapel }} ({{ $matapelajaran->kd_singkat }})</option>
-                          @endforeach
-                        </select>
+                       <label class="form-label">Kuis</label>
+                       <input type="number" class="form-control" name="kuis" placeholder="Masukkan Nilai">
                       </div>
                       <div class="form-group">
-                        <label class="form-label">Kuis</label>
-                        <input type="number" class="form-control" name="kuis" placeholder="Masukkan Nilai">
+                       <label for="ulangan">Ulangan Harian</label>
+                       <input type="number" class="form-control" name="ulangan" placeholder="Masukkan Nilai">
                       </div>
-                      <div class="form-group">
-                        <label for="ulangan">Ulangan Harian</label>
-                        <input type="number" class="form-control" name="ulangan" placeholder="Masukkan Nilai">
-                      </div>
-                      <div class="form-group">
-                        <label for="uts">Nilai UTS</label>
-                        <input type="number" class="form-control" name="uts" placeholder="Masukkan Nilai">
-                   </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="uts">Nilai UTS</label>
+                    <input type="number" class="form-control" name="uts" placeholder="Masukkan Nilai">
+                  </div>
+                  <div class="form-group">
+                    <label for="sikap">Nilai Sikap</label>
+                    <input type="number" class="form-control" name="sikap" placeholder="Masukkan Nilai">
+                  </div>
                 </div>
                 <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Mata Pelajaran</label>
+                    <select id="inputStatus" class="form-control custom-select" name="mapel_id">
+                      <option selected disabled>Pilih Mata Pelajaran</option>
+                      @foreach ($matapelajaran as $lokal)
+                      <option value="{{ $lokal->id }}">{{ $lokal->mapel }} ({{ $lokal->kd_singkat }})</option>
+                      @endforeach
+                </select>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-header">
+                        <h1 class="card-title"><b>Penilaian Keterampilan</b></h1>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"><i class="fas fa-minus"></i></button>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label for="performance">Nilai Performance</label>
                         <input type="number"  class="form-control" name="performance"placeholder="Masukkan Nilai">
@@ -200,10 +207,8 @@
                         <label for="product">Nilai Product</label>
                         <input type="number" class="form-control" name="product" placeholder="Masukkan Nilai">
                       </div>
-                      <div class="form-group">
-                        <label for="sikap">Nilai Sikap</label>
-                        <input type="number" class="form-control" name="sikap" placeholder="Masukkan Nilai">
-                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -217,7 +222,8 @@
                 </div>
               </div>
             </div>
-          </form><!-- /.form --->
+          <!-- /.form --->
+        </form>
         </div>
       </div>
    </div>
@@ -241,30 +247,48 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="form-label">{{ $siswa->nama }} ID</label>
-                        <input type="text" class="form-control" name="siswa_id" Value="{{ $siswa->id }}">(Jangan diganti, Jika ingin menilai siswa ini)
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-header">
+                        <h1 class="card-title"><b>Penilaian Pengetahuan</b></h1>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"><i class="fas fa-minus"></i></button>
+                        </div>
                       </div>
                       <div class="form-group">
-                        <label class="form-label">Mata Pelajaran</label>
-                        <select class="form-control" name="mapel_id">
-                          <option value="{{ $mapel->id }}">{{ $mapel->mapel }} ({{ $mapel->kd_singkat }})</option>
-                        </select>
+                       <label class="form-label">Kuis</label>
+                       <input type="number" class="form-control" name="kuis" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->kuis }}">
                       </div>
                       <div class="form-group">
-                        <label class="form-label">Kuis</label>
-                        <input type="number" class="form-control" name="kuis" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->kuis }}">
+                       <label for="ulangan">Ulangan Harian</label>
+                       <input type="number" class="form-control" name="ulangan" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->ulangan }}">
                       </div>
-                      <div class="form-group">
-                        <label for="ulangan">Ulangan Harian</label>
-                        <input type="number" class="form-control" name="ulangan" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->ulangan }}">
-                      </div>
-                      <div class="form-group">
-                        <label for="uts">Nilai UTS</label>
-                        <input type="number" class="form-control" name="uts" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->uts }}">
-                   </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="uts">Nilai UTS</label>
+                    <input type="number" class="form-control" name="uts" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->uts }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="sikap">Nilai Sikap</label>
+                    <input type="number" class="form-control" name="sikap" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->sikap }}">
+                  </div>
                 </div>
                 <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Mata Pelajaran</label>
+                    <select class="form-control" name="mapel_id">
+                      <option value="{{ $mapel->id }}">{{ $mapel->mapel }} ({{ $mapel->kd_singkat }})</option>
+                    </select>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-header">
+                        <h1 class="card-title"><b>Penilaian Keterampilan</b></h1>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"><i class="fas fa-minus"></i></button>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label for="performance">Nilai Performance</label>
                         <input type="number"  class="form-control" name="performance"placeholder="Masukkan Nilai" value="{{ $mapel->pivot->performance }}">
@@ -277,10 +301,8 @@
                         <label for="product">Nilai Product</label>
                         <input type="number" class="form-control" name="product" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->product }}">
                       </div>
-                      <div class="form-group">
-                        <label for="sikap">Nilai Sikap</label>
-                        <input type="number" class="form-control" name="sikap" placeholder="Masukkan Nilai" value="{{ $mapel->pivot->sikap }}">
-                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -294,7 +316,8 @@
                 </div>
               </div>
             </div>
-          </form><!-- /.form --->
+          <!-- /.form --->
+        </form>
       </div>
     </div>
   </div>
@@ -320,8 +343,3 @@
 
 @stop
 
-@section('sideContent')
-    <p class="p-3">Note by Developer:</p><br>
-    <p class="p-3">Semangat Ya orang Hebat!!</p>
-
-@stop

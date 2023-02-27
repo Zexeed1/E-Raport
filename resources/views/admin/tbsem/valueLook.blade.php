@@ -133,18 +133,14 @@
                     @endforeach
                     </tbody>
                 </table>
-
                 </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-
-
-
               <!-- this row will not appear when printing -->
               <div class="row no-print ">
                 <div class="col-12">
-                  <a href="/nilai-semester/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Print</a>
+                  <a href="/nilai-semester/{{ $siswa->id }}/cetak" rel="noopener" target="_blank" class="btn btn-default float-lg-right"><i class="fas fa-print"></i> Cetak Raport Semester</a>
                 </div>
               </div>
             </div>

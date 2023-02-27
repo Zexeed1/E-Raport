@@ -145,16 +145,10 @@
                       @endif
                     </tr>
                     @endforeach
-                    </tbody>
+                  </tbody>
                 </table>
-
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-
-
+                </div><!-- /.col -->
+              </div><!-- /.row -->
               <!-- this row will not appear when printing -->
               <div class="row no-print ">
                 <div class="col-12">
@@ -389,24 +383,18 @@
 @stop
 
 @section('script')
-    <script> <!-- Script Tanggal--->
-        var tw = new Date();
-        if (tw.getTimezoneOffset() == 0) (a=tw.getTime() + ( 7 *60*60*1000))
-        else (a=tw.getTime());
-        tw.setTime(a);
-        var tahun= tw.getFullYear ();
-        var hari= tw.getDay ();
-        var bulan= tw.getMonth ();
-        var tanggal= tw.getDate ();
-        var hariarray=new Array("Minggu,","Senin,","Selasa,","Rabu,","Kamis,","Jum'at,","Sabtu,");
-        var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
-        document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun;
-    </script><!-- /.Script Tanggal--->
-
+  <script> <!-- Script Tanggal--->
+    var tw = new Date();
+    if (tw.getTimezoneOffset() == 0) (a=tw.getTime() + ( 7 *60*60*1000))
+    else (a=tw.getTime());
+    tw.setTime(a);
+    var tahun= tw.getFullYear ();
+    var hari= tw.getDay ();
+    var bulan= tw.getMonth ();
+    var tanggal= tw.getDate ();
+    var hariarray=new Array("Minggu,","Senin,","Selasa,","Rabu,","Kamis,","Jum'at,","Sabtu,");
+    var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
+    document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun;
+  </script><!-- /.Script Tanggal--->
 @stop
 
-@section('sideContent')
-    <p class="p-3">Note by Developer:</p><br>
-    <p class="p-3">Semangat Ya orang Hebat!!</p>
-
-@stop
