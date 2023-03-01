@@ -9,7 +9,7 @@ class mapel extends Model
 {
     use HasFactory;
     protected $table = 'mapel';
-    protected $fillable = ['kode_mapel','mapel','semester_id'];
+    protected $fillable = ['kd_singkat','kode_mapel','mapel','guru_id'];
 
     public function siswa()
     {
@@ -23,7 +23,7 @@ class mapel extends Model
 
     public function guru()
     {
-        return $this->hasMany(guru::class);
+        return $this->belongsTo(guru::class,'guru_id','id');
     }
 
     public function kelas()

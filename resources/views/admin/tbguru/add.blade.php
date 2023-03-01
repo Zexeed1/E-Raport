@@ -56,15 +56,6 @@
                 <label for="inputClientCompany">Nomor Handphone *</label>
                 <input type="text" id="inputClientCompany" class="form-control" name="nohp" placeholder="+62(...)-(....)-(....)" value="+62-8">
               </div><!-- ./form-group --->
-              <div class="form-group">
-                <label for="inputStatus">Mata Pelajaran Yang diampu *</label>
-                <select id="inputStatus" class="form-control custom-select" name="mapel_id">
-                  <option selected disabled>Pilih Mata Pelajaran</option>
-                   @foreach ($mapel as $lokal)
-                    <option value="{{ $lokal->id }}">{{ $lokal->mapel }}</option>
-                    @endforeach
-                </select>
-              </div><!-- ./form-group --->
             </div><!-- /.card-body -->
           </div><!-- /.card -->
         </div><!-- /.col-md-6 -->

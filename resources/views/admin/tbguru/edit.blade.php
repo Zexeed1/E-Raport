@@ -61,15 +61,6 @@
                 <label for="inputClientCompany">Nomor Handphone *</label>
                 <input type="text" id="inputClientCompany" class="form-control" name="nohp" placeholder="+62(...)-(....)-(....)" value="{{ $guru->nohp }}">
               </div>
-              <div class="form-group">
-                <label for="inputStatus">Mata Pelajaran Yang diampu *</label>
-                <select id="inputStatus" class="form-control custom-select" name="mapel_id">
-                  <option selected disabled>{{ $guru->mapel->mapel }}</option>
-                   @foreach ($mapel as $lokal)
-                    <option value="{{ $lokal->id }}">{{ $lokal->mapel }}</option>
-                    @endforeach
-                </select>
-              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -93,7 +84,7 @@
               </div>
               <div class="form-group">
                 <label for="inputSpentBudget">Username *</label>
-                <input type="text" id="inputSpentBudget" class="form-control" name="email" value="{{ $guru->email }}">
+                <input type="text" id="inputSpentBudget" class="form-control" name="email" disabled value="{{ $guru->email }}">
               </div>
               <div class="form-group">
                 <label for="inputEstimatedDuration">Alamat *</label>
@@ -101,7 +92,7 @@
               </div>
                  <div class="form-group">
                 <label for="inputEstimatedDuration">Foto Guru</label>
-                <input type="file" name="avatar" value="{{ $guru->avatar }}">{{ $guru->avatar }}</input>
+                <input type="file" name="avatar" disabled value="{{ $guru->avatar }}"><img  class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.$guru->avatar) }}" alt=""></input>
               </div>
             </div>
             <!-- /.card-body -->

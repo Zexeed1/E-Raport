@@ -85,7 +85,7 @@
                             <td>{{ $lokal->kelas }}</td>
                             <td>
                                 <a type="button" class="btn btn-info" data-toggle="modal" data-target="#Update{{ $lokal->id }}"><i class="fa fa-pencil"></i></a>
-                                <a type="button" class="btn btn-danger" href="/kelas/delete/{{ $lokal->id }}"><i class="fa fa-trash"></i></a>
+                                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $lokal->id }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -132,6 +132,30 @@
         <button type="submit" class="btn btn-success">Simpan</button>
       </div>
      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal{{ $lokal->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus Kelas {{ $lokal->kelas }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="/kelas/delete/{{ $lokal->id }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

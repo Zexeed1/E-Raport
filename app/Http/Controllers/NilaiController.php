@@ -77,7 +77,7 @@ class NilaiController extends Controller
     {
         $siswa = siswa::find($id);
         $matapelajaran = mapel::all();
-        $semester = semester::where('id','2')->get();
+        $semester = semester::where('kode','666')->get();
         return view('admin.tbsem.pengetahuan.nilaip', compact('matapelajaran','siswa','semester'));
     }
     public function insertp(Request $request, $id)
@@ -112,7 +112,7 @@ class NilaiController extends Controller
     {
         $siswa = siswa::find($id);
         $matapelajaran = mapel::all();
-        $semester = semester::where('id', '2')->get();
+        $semester = semester::where('kode', '666')->get();
         return view('admin.tbsem.keterampilan.nilaik', compact('matapelajaran', 'siswa', 'semester'));
     }
     public function editk(Request $request, $id)
@@ -154,7 +154,7 @@ class NilaiController extends Controller
     {
         $siswa = Siswa::find($id);
         $mapel = Mapel::all();
-        $semester = semester::where('kode', '1')->get();
+        $semester = semester::where('kode', '666')->get();
         return view('admin.tbsem.cetak', ['siswa' => $siswa, 'mapel' => $mapel, 'semester' => $semester]);
     }
     //----------------------------------Nilai Sikap---------------------------------------//

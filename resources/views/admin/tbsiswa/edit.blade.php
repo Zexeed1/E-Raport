@@ -85,7 +85,7 @@
               </div>
               <div class="form-group">
                 <label for="inputEstimatedDuration">Foto Siswa</label>
-                <input type="file" class="form-control" name="avatar" disabled value="{{ $siswa->avatar }}">
+                <input type="file" name="avatar" disabled value="{{ $siswa->avatar }}"><img class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.$siswa->avatar) }}" alt="User profile picture"></input>
               </div>
             </div>
             <!-- /.card-body -->

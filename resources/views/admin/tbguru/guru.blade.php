@@ -46,7 +46,6 @@
                                 <th style="text-align: center">Mapel</th>
                                 <th style="text-align: center">Agama</th>
                                 <th style="text-align: center">Alamat</th>
-                                <th style="text-align: center">Tools</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,7 +57,6 @@
                                         <td style="text-align: center">{{ $guru->email }}</td>
                                         <td style="text-align: center">{{ $guru->jk }}</td>
                                         <td style="text-align: center">{{ $guru->nohp }}</td>
-                                        <td style="text-align: center">{{ $guru->mapel->mapel }}</td>
                                         <td style="text-align: center">{{ $guru->agama }}</td>
                                         <td style="text-align: center">{{ $guru->alamat }}</td>
                                         <td style="text-align: center">

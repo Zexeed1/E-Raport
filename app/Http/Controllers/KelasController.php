@@ -28,6 +28,9 @@ class KelasController extends Controller
     public function delete($id)
     {
         $kelas = kelas::find($id);
+        if (!$kelas) {
+            return redirect('/kelas')->with('error', 'Data tidak ditemukan');
+        }
         $kelas->delete();
         return redirect('/kelas')->with('delete', 'Data Berhasil di Hapus');
     }

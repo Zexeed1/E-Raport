@@ -28,9 +28,6 @@
                     <b>NIS</b> <a class="float-right">{{ $guru->jk }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Kelas</b> <a class="float-right">{{ $guru->mapel->mapel }}</a>
-                  </li>
-                  <li class="list-group-item">
                     <b>Agama</b> <a class="float-right">{{ $guru->agama }}</a>
                   </li>
                 </ul>

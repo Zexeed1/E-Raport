@@ -15,9 +15,8 @@ class SessionController extends Controller
 {
     public function index()
     {
-        $semester = semester::where('id', '1')->get();
-        $semester2 = semester::where('id', '2')->get();
-        return view('auth.login',compact('semester','semester2'));
+        $semester = semester::where('kode', '666')->get();
+        return view('auth.login',compact('semester'));
     }
 
     public function login(Request $request)

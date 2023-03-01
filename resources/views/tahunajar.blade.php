@@ -2,8 +2,6 @@
 
 @section('content')
 @include('template.preloader')
-<form action="/mapel/simpan" method="POST">
-@csrf
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -16,18 +14,12 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-    {{-- menampilkan error validasi --}}
 
-        </div>
-    </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-          <div class="card card-primary">
+            <div class="align-items-center justify-content-center">
+          <div class="card card-primary mx-auto">
             <div class="card-header">
               <h3 class="card-title">Tahun Ajaran Dan Semester</h3>
 
@@ -43,13 +35,17 @@
                     <tr>
                     <th scope="col">Tahun Ajaran</th>
                     <th scope="col">Semester</th>
+                     <th scope="col">Tools</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($semester as $pelajaran )
+                    @foreach ($semester as $semester )
                         <tr>
-                            <td>{{ $pelajaran->tahun_ajar }}</td>
-                            <td>{{ $pelajaran->semester }}</td>
+                            <td>{{ $semester->tahun_ajar }}</td>
+                            <td>{{ $semester->semester }}</td>
+                            <td>
+                                <a type="button" class="btn btn-info" data-toggle="modal" data-target="#Update{{ $semester->id }}"><i class="fa fa-pencil"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -59,16 +55,36 @@
           </div>
           <!-- /.card -->
       </div>
-   <div class="container">
-    <div class="container-fluid"></div>
-      <div class="row">
-        <div class="col-2">
-
-        </div>
       </div>
     </div>
-   </div>
 </div>
+
+@foreach($semesters as $semester)
+<div class="modal fade" id="Update{{ $semester->id }}" tabindex="-1" aria-labelledby="UpdateLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdateLabel">Edit semester</h5>
+      </div>
+      <div class="modal-body">
+       <form action="/semester/update/{{ $semester->id }}" method="POST">
+       @csrf
+       @method('put')
+        <div class="form-group">
+          <label for="inputName">Tahun Ajaran*</label>
+          <input type="text" id="inputName" class="form-control" name="tahun_ajar" value="{{ $semester->tahun_ajar }}">
+        </div>
+        <div class="form-group">
+          <label for="inputName">semester*</label>
+          <input type="text" id="inputName" class="form-control" name="semester" value="{{ $semester->semester }}">
+        </div>
+        <a  class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+        <button type="submit" class="btn btn-success">Simpan</button>
+      </div>
+     </form>
+    </div>
+  </div>
 </div>
+@endforeach
 
 @endsection

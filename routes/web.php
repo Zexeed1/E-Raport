@@ -44,7 +44,7 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
     Route::post('/kelas/simpan', [KelasController::class, 'add']);
     Route::put('/kelas/update/{id}', [KelasController::class, 'update']);
-    Route::get('/kelas/delete/{id}', [KelasController::class, 'delete']);
+    Route::delete('/kelas/delete/{id}', [KelasController::class, 'delete']);
 
     //Halaman Guru
     Route::get('/guru', [GuruController::class, 'index'])->name('guru');
@@ -60,6 +60,7 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     Route::post('/mapel/simpan', [MapelController::class, 'add']);
     Route::get('/mapel/delete/{id}', [MapelController::class, 'delete']);
     Route::get('/TA-semester', [MapelController::class, 'show'])->name('tahunajar');
+    Route::put('/semester/update/{id}', [MapelController::class, 'updateSemester']);
 });
 
 Route::group(['middleware'=>'isLogin','checkRole:Admin,Guru'], function()

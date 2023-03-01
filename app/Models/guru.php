@@ -9,11 +9,11 @@ class guru extends Model
 {
     use HasFactory;
     protected $table ='guru';
-    protected $fillable = ['id', 'user_id','nama', 'jeniskelamin', 'nohp', 'alamat', 'mapel_id', 'agama', 'email', 'avatar'];
+    protected $fillable = ['id', 'user_id','nama', 'jeniskelamin', 'nohp', 'alamat', 'agama', 'email', 'avatar'];
 
     public function mapel()
     {
-        return $this->belongsTo(Mapel::class);
+        return $this->hasMany(Mapel::class);
     }
     public function nilai()
     {
