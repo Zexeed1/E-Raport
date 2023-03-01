@@ -38,7 +38,7 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     Route::post('/siswa/simpan', [SiswaController::class, 'simpan']);
     Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('editSiswa');
     Route::put('/siswa/update/{id}', [SiswaController::class, 'update']);
-    Route::get('/siswa/delete/{id}', [SiswaController::class, 'delete']);
+    Route::delete('/siswa/delete/{id}', [SiswaController::class, 'delete']);
 
     //Halaman Kelas
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
@@ -53,11 +53,12 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     Route::post('/guru/simpan', [GuruController::class, 'simpan']);
     Route::get('/guru/edit/{id}', [GuruController::class, 'edit'])->name('editguru');
     Route::put('/guru/update/{id}', [GuruController::class, 'update']);
-    Route::get('/guru/delete/{id}', [GuruController::class, 'delete']);
+    Route::delete('/guru/delete/{id}', [GuruController::class, 'delete']);
 
     //Halaman Mapel
     Route::get('/mapel', [MapelController::class, 'index'])->name('mapel');
     Route::post('/mapel/simpan', [MapelController::class, 'add']);
+    Route::put('/mapel/update/{id}', [MapelController::class, 'update']);
     Route::get('/mapel/delete/{id}', [MapelController::class, 'delete']);
     Route::get('/TA-semester', [MapelController::class, 'show'])->name('tahunajar');
     Route::put('/semester/update/{id}', [MapelController::class, 'updateSemester']);

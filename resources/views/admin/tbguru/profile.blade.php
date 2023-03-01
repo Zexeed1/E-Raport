@@ -25,7 +25,7 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>NIS</b> <a class="float-right">{{ $guru->jk }}</a>
+                    <b>Jenis Kelamin</b> <a class="float-right">{{ $guru->jk }}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Agama</b> <a class="float-right">{{ $guru->agama }}</a>

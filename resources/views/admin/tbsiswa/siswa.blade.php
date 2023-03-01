@@ -71,7 +71,7 @@
                                             @endif
                                             @if (auth()->user()->role == 'Admin')
                                             <a href="/siswa/edit/{{ $murid->id }}" type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <a href="/siswa/delete/{{ $murid->id }}" type="button" class="btn btn-danger btn-sm toastDafaultDanger"><i class="fas fa-trash"></i></a>
+                                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $murid->id }}"><i class="fa fa-trash"></i></a>
                                         </td>
                                         @endif
                                     </tr>
@@ -84,6 +84,33 @@
         </div>
     </div>
 </div>
+
+@foreach ($siswa as $murid )
+ <div class="modal fade" id="deleteModal{{ $murid->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus Data {{ $murid->nama }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="/siswa/delete/{{ $murid->id }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
 @endsection
 @section('script')
 <script>

@@ -56,7 +56,6 @@
                             <td>{{ $mapel->guru->nama }}</td>
                             <td>
                                 <a type="button" class="btn btn-info" data-toggle="modal" data-target="#Update{{ $mapel->id }}"><i class="fa fa-pencil"></i></a>
-                                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $mapel->id }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -95,7 +94,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">Guru Yang Mengampu</label>
-           <select class="form-control" name="mapel_id">
+           <select class="form-control" name="guru_id">
             <option selected disabled>Pilih Guru</option>
             @foreach ($guru as $pengajar)
             <option value="{{ $pengajar->id }}">{{ $pengajar->nama }}</option>
@@ -106,30 +105,6 @@
         <button type="submit" class="btn btn-success">Simpan</button>
       </div>
      </form>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="deleteModal{{ $mapel->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Apakah Anda yakin ingin menghapus Mata Pelajaran {{ $mapel->mapel }}?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <form action="/data/{{ $mapel->id }}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-      </div>
     </div>
   </div>
 </div>

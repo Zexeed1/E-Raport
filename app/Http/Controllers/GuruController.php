@@ -14,7 +14,8 @@ class GuruController extends Controller
     {
         $guru = guru::all();
         mapel::all();
-        return view('admin.tbguru.guru', compact('guru'));
+        $gurus = guru::all();
+        return view('admin.tbguru.guru', compact('guru', 'gurus'));
     }
 
     public function profile($id)
@@ -88,6 +89,9 @@ class GuruController extends Controller
     public function delete($id)
     {
         $guru = guru::find($id);
+        if(!$guru){
+            return redirect('/guru')->with('gagal', 'Data Tidak Ditemukan');
+        }
         $guru->delete();
         return redirect('/guru')->with('delete', 'Data Berhasil di Hapus');
     }

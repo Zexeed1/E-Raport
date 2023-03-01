@@ -62,7 +62,7 @@
                                         <td style="text-align: center">
                                             <a href="/guru/profile/{{ $guru->id }}" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="/guru/edit/{{ $guru->id }}" type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <a href="/guru/delete/{{ $guru->id }}" type="button" class="btn btn-danger btn-sm toastDafaultDanger"><i class="fas fa-trash"></i></a>
+                                            <a data-toggle="modal" data-target="#deleteModal{{ $guru->id }}" type="button" class="btn btn-danger btn-sm toastDafaultDanger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,6 +74,33 @@
         </div>
     </div>
 </div>
+
+@foreach ($gurus as $guru )
+<div class="modal fade" id="deleteModal{{ $guru->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus Data {{ $guru->nama }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="/guru/delete/{{ $guru->id }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
 @endsection
 @section('script')
 <script>

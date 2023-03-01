@@ -101,6 +101,9 @@ class SiswaController extends Controller
     public function delete($id)
     {
         $siswa = Siswa::find($id);
+        if(!$siswa){
+            return redirect('/siswa')->with('gagal', 'Data Tidak ditemukan');
+        }
         $siswa->delete();
         return redirect('/siswa')->with('delete','Data Berhasil di Hapus');
     }
