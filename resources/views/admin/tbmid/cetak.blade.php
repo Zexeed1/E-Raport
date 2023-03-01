@@ -54,13 +54,13 @@
                 $nilai1 = $subtotal;
                 if ($nilai1 == "") {
                     echo "";
-                } else if ($nilai1 >= 0 && $nilai1 <= 73) {
+                } else if ($nilai1 >= 0 && $nilai1 <= 74) {
                     echo 'D';
                 } else if ($nilai1 >= 74 && $nilai1 <= 82) {
                     echo 'C';
-                } else if ($nilai1 >= 83 && $nilai1 <= 90) {
+                } else if ($nilai1 >= 82 && $nilai1 <= 89) {
                     echo 'B';
-                } else if ($nilai1 >= 91 && $nilai1 <= 100) {
+                } else if ($nilai1 >= 89 && $nilai1 <= 100) {
                     echo 'A';
                 }
             @endphp</td>

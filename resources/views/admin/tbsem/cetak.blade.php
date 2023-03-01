@@ -18,7 +18,7 @@
 <section class="content">
       <div class="container-fluid">
   <img class="float-left" src="/images/logo-fis.png" width="150" height="80">
-  <p style="text-align: center; font-size:x-large; font:bold;"><b>PENCAPAIAN KOMPETENSI PESERTA DIDIK</b><br>SMPIT Future Islamic School</p><hr>@foreach ($semester2 as $semester )@endforeach
+  <p style="text-align: center; font-size:x-large; font:bold;"><b>PENCAPAIAN KOMPETENSI PESERTA DIDIK</b><br>SMPIT Future Islamic School</p><hr>@foreach ($semester as $semester )@endforeach
 
 <div class="card col-4">
   <div class="card-body">
@@ -137,7 +137,7 @@
                         $na = $nilai_akhir+$nilai;
                         $rata = $na/2;
                     @endphp
-                      <td style="text-align: center"><b>{{ decimal($rata) }}</b></td>
+                      <td style="text-align: center"><b>{{ round($rata) }}</b></td>
                     </tr>
                     @endforeach
                     </tbody>

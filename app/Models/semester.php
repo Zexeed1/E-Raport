@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class semester extends Model
 {
     protected $table = 'semester';
-    protected $fillable = ['id', 'tahun_ajar', 'semester'];
+    protected $fillable = ['id','kode','tahun_ajar', 'semester'];
 
     public function mapel()
     {

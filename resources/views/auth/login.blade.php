@@ -59,7 +59,6 @@
                 <div class="alert alert-success"></div>
             @endif
             @foreach ($semester as $semester )@endforeach
-            @foreach ($semester2 as $semester2 )@endforeach
         <div class="form-group">
           <label for="email" class="form-label">Username</label><i class="fas fa-user col-2"></i>
           <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Session::get('email') }}" placeholder="Masukkan username" name="email">
@@ -70,7 +69,7 @@
         </div>
         <div class="form-group">
           <label class="form-label"></i>Tahun Ajaran - Semester</label><i class="fas fa-graduation-cap col-2"></i>
-          <input type="text" class="form-control" disabled value="{{ $semester2->tahun_ajar }} - {{ $semester2->semester }}">
+          <input type="text" class="form-control" disabled value="{{ $semester->tahun_ajar }} - {{ $semester->semester }}">
         </div>
         <div class="row">
           <!-- /.col -->
