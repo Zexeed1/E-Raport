@@ -40,6 +40,10 @@
             </div>
             <div class="card-body">
               <div class="form-group">
+                <label for="inputName">Kode Kelas*</label>
+                <input type="text"  class="form-control" name="kode_kelas">
+              </div>
+              <div class="form-group">
                 <label for="inputName">Kelas*</label>
                 <input type="text" id="inputName" class="form-control" name="kelas">
               </div>
@@ -68,6 +72,7 @@
                 <thead>
                     <tr>
                     <th scope="col">No</th>
+                    <th scope="col">Kode Kelas</th>
                     <th scope="col">Kelas</th>
                     <th scope="col">Tools</th>
                     </tr>
@@ -76,9 +81,11 @@
                     @foreach ($kelas as $lokal )
                         <tr>
                             <th>{{ $loop->iteration }}</th>
+                            <td>{{ $lokal->kode_kelas }}</td>
                             <td>{{ $lokal->kelas }}</td>
                             <td>
-                                <a type="button" class="btn btn-danger" href="/kelas/delete/{{ $lokal->id }}"><i class="fas fa-trash"></i></a>
+                                <a type="button" class="btn btn-info" data-toggle="modal" data-target="#Update{{ $lokal->id }}"><i class="fa fa-pencil"></i></a>
+                                <a type="button" class="btn btn-danger" href="/kelas/delete/{{ $lokal->id }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -101,5 +108,33 @@
    </div>
 </div>
 </div>
+
+@foreach($kelas as $lokal)
+<div class="modal fade" id="Update{{ $lokal->id }}" tabindex="-1" aria-labelledby="UpdateLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UpdateLabel">Edit Kelas</h5>
+      </div>
+      <div class="modal-body">
+       <form action="/kelas/update/{{ $lokal->id }}" method="POST">
+       @csrf
+       @method('put')
+        <div class="form-group">
+          <label for="inputName">Kode Kelas*</label>
+          <input type="text" id="inputName" class="form-control" name="kode_kelas" value="{{ $lokal->kode_kelas }}">
+        </div>
+        <div class="form-group">
+          <label for="inputName">Kelas*</label>
+          <input type="text" id="inputName" class="form-control" name="kelas" value="{{ $lokal->kelas }}">
+        </div>
+        <a  class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+        <button type="submit" class="btn btn-success">Simpan</button>
+      </div>
+     </form>
+    </div>
+  </div>
+</div>
+@endforeach
 
 @endsection

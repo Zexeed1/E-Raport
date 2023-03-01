@@ -18,6 +18,13 @@ class KelasController extends Controller
         // dd($request);
         return redirect('/kelas');
     }
+    public function update(Request $request, $id)
+    {
+        $kelas = kelas::find($id);
+        $kelas->update($request->all());
+        // dd($request->all());
+        return redirect('/kelas')->with('update', 'Data Kelas Berhasil di update');
+    }
     public function delete($id)
     {
         $kelas = kelas::find($id);

@@ -43,6 +43,7 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     //Halaman Kelas
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
     Route::post('/kelas/simpan', [KelasController::class, 'add']);
+    Route::put('/kelas/update/{id}', [KelasController::class, 'update']);
     Route::get('/kelas/delete/{id}', [KelasController::class, 'delete']);
 
     //Halaman Guru
