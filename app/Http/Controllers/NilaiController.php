@@ -122,7 +122,7 @@ class NilaiController extends Controller
 
         // menambahkan kembali relasi dengan data baru
         $siswa->mapel2()->updateExistingPivot($mapel->id, ['proses' => $request->proses, 'produk' => $request->produk, 'pro1' => $request->pro1, 'pro2' => $request->pro2, 'desk_k' => $request->desk_k]);
-        return redirect()->back()->with('berhasil', 'Data nilai berhasil di update');
+        return redirect()->back()->with('berhasil', 'Data nilai berhasil di isi');
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
 

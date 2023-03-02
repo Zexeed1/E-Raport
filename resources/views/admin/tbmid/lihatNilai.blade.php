@@ -47,6 +47,16 @@
               {{ session('success') }}
             </div>
             @endif
+            @if (session('berhasil'))
+            <div class="alert alert-info" role="alert">
+              {{ session('berhasil') }}
+            </div>
+            @endif
+            @if (session('already'))
+            <div class="alert alert-warning" role="alert">
+              {{ session('already') }}
+            </div>
+            @endif
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
               {{ session('error') }}

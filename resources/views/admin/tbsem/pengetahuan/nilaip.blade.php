@@ -56,6 +56,16 @@
                         {{ session('success') }}
                     </div>
                  @endif
+                 @if (session('berhasil'))
+                    <div class="alert alert-info" role="alert">
+                        {{ session('berhasil') }}
+                    </div>
+                 @endif
+                 @if (session('already'))
+                    <div class="alert alert-warning" role="alert">
+                        {{ session('already') }}
+                    </div>
+                 @endif
                  @if (session('error'))
                     <div class="alert alert-danger" role="alert">
                         {{ session('error') }}
@@ -119,9 +129,9 @@
                       <td style="text-align: center"><b>{{ round($nilai_akhir) }}</b></td>
                       <td style="text-align: center"><b>@php
                         $nilai1 = $nilai_akhir;
-                        if ($nilai1 >= 0 && $nilai1 <= 74) {
+                        if ($nilai1 >= 0 && $nilai1 <= 75) {
                             echo 'D';
-                        } else if ($nilai1 >= 74 && $nilai1 <= 82) {
+                        } else if ($nilai1 >= 75 && $nilai1 <= 82) {
                             echo 'C';
                         } else if ($nilai1 >= 82 && $nilai1 <= 90) {
                             echo 'B';
@@ -220,7 +230,7 @@
                         <select class="form-control" name="mapel_id">
                           <option selected disabled>Pilih Mata Pelajaran</option>
                           @foreach ($matapelajaran as $matapelajaran)
-                          <option value="{{ $matapelajaran->id }}">{{ $matapelajaran->mapel }} ({{ $matapelajaran->kd_singkat }})</option>
+                          <option value="{{ $matapelajaran->id }}">{{ $loop->iteration }}.{{ $matapelajaran->mapel }} ({{ $matapelajaran->kd_singkat }}) || {{ $matapelajaran->guru->nama }}</option>
                           @endforeach
                         </select>(Pilih Mata Pelajaran yang belum di nilai)
                       </div>
@@ -327,7 +337,7 @@
                       <div class="form-group">
                         <label class="form-label">Mata Pelajaran</label>
                         <select class="form-control" name="mapel_id">
-                          <option value="{{ $mapel->id }}">{{ $mapel->mapel }} ({{ $mapel->kd_singkat }})</option>
+                          <option value="{{ $mapel->id }}">{{ $loop->iteration }}.{{ $mapel->mapel }} ({{ $mapel->kd_singkat }}) || {{ $mapel->guru->nama }}</option>
                         </select>(Pilih Mata Pelajaran yang belum di nilai)
                       </div>
                     <div class="card">
