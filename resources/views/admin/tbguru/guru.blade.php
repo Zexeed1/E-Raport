@@ -40,7 +40,7 @@
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Foto Guru</th>
                                 <th style="text-align: center">Nama Guru</th>
-                                <th style="text-align: center">Username</th>
+                                <th style="text-align: center">Email</th>
                                 <th style="text-align: center">Jenis Kelamin</th>
                                 <th style="text-align: center">No.HP</th>
                                 <th style="text-align: center">Mapel</th>

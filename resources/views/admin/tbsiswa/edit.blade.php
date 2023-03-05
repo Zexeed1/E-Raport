@@ -76,8 +76,8 @@
                 <input type="text" id="inputEstimatedBudget" class="form-control" name="agama" value="{{ $siswa->agama }}">
               </div>
               <div class="form-group">
-                <label for="inputSpentBudget">Username</label>
-                <input type="text" id="inputSpentBudget" class="form-control" name="email" disabled value="{{ $siswa->email }}">
+                <label for="inputSpentBudget">Email</label>
+                <input type="Email" id="inputSpentBudget" class="form-control" name="email" disabled value="{{ $siswa->email }}">
               </div>
               <div class="form-group">
                 <label for="inputEstimatedDuration">Alamat</label>

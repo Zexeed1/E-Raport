@@ -12,12 +12,9 @@ use App\Http\Controllers\{GuruController, HomeController, KelasController, Mapel
 | "web". Sekarang buatlah sesuatu yang hebat!
 |
 */
+
 //not in group
-
 Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
 
 //Route Group guest
 Route::group(['middleware'=>['isTamu']], function()
@@ -31,6 +28,7 @@ Route::group(['middleware'=>['isTamu']], function()
 //Route Application
 Route::group(['middleware'=> ['isLogin','checkRole:Admin']], function()
 {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     //Halaman Siswa
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
     Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
@@ -76,6 +74,7 @@ Route::group(['middleware'=> ['isLogin','checkRole:Admin']], function()
 Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
 {
 
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
     Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
     //NilaiMid
@@ -109,7 +108,8 @@ Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
 
 });
 
-Route::group(['middleware'=>['isLogin', 'checkRole: Siswa']], function(){
+Route::group(['middleware'=>'isLogin', 'checkRole: Siswa'], function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/siswa/check-ranking', [SiswaController::class, 'checkRanking'])->name('ranking');
 });
 Route::group(['middleware' => 'isLogin', 'checkRole: Admin, Guru, Siswa'], function () {

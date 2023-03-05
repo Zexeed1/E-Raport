@@ -41,7 +41,7 @@
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Foto Siswa</th>
                                 <th style="text-align: center">Nama Siswa</th>
-                                <th style="text-align: center">Username</th>
+                                <th style="text-align: center">Email</th>
                                 <th style="text-align: center">NIS</th>
                                 <th style="text-align: center">Jenis Kelamin</th>
                                 <th style="text-align: center">Kelas</th>

@@ -60,7 +60,7 @@
             @endif
             @foreach ($semester as $semester )@endforeach
         <div class="form-group">
-          <label for="email" class="form-label">Username</label><i class="fas fa-user col-2"></i>
+          <label for="email" class="form-label">Username / Email</label><i class="fas fa-user col-2"></i>
           <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Session::get('email') }}" placeholder="Masukkan username" name="email">
         </div>
         <div class="form-group">

@@ -83,8 +83,8 @@
                 <input type="text" id="inputEstimatedBudget" class="form-control" name="agama" value="{{ $guru->agama }}">
               </div>
               <div class="form-group">
-                <label for="inputSpentBudget">Username *</label>
-                <input type="text" id="inputSpentBudget" class="form-control" name="email" disabled value="{{ $guru->email }}">
+                <label for="inputSpentBudget">Email *</label>
+                <input type="email" id="inputSpentBudget" class="form-control" name="email" disabled value="{{ $guru->email }}">
               </div>
               <div class="form-group">
                 <label for="inputEstimatedDuration">Alamat *</label>

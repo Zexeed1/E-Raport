@@ -75,8 +75,8 @@
                 <input type="text" id="inputEstimatedBudget" class="form-control" name="agama">
               </div><!-- /.form-group -->
               <div class="form-group">
-                <label for="inputSpentBudget">Username *</label>
-                <input type="text" id="inputSpentBudget" class="form-control" name="email">
+                <label for="inputSpentBudget">Email *</label>
+                <input type="email" id="inputSpentBudget" class="form-control" name="email">
               </div><!-- /.form-group -->
               <div class="form-group">
                 <label for="inputEstimatedDuration">Alamat *</label>
