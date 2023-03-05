@@ -54,9 +54,9 @@
                 $nilai1 = $subtotal;
                 if ($nilai1 == "") {
                     echo "";
-                } else if ($nilai1 >= 0 && $nilai1 <= 74) {
+                } else if ($nilai1 >= 0 && $nilai1 <= 75) {
                     echo 'D';
-                } else if ($nilai1 >= 74 && $nilai1 <= 82) {
+                } else if ($nilai1 >= 75 && $nilai1 <= 82) {
                     echo 'C';
                 } else if ($nilai1 >= 82 && $nilai1 <= 89) {
                     echo 'B';

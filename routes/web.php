@@ -7,19 +7,20 @@ use App\Http\Controllers\{GuruController, HomeController, KelasController, Mapel
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Berikut adalah tempat di mana Anda dapat mendaftarkan rute web untuk aplikasi Anda.
+| Rute-rute ini dimuat oleh RouteServiceProvider dalam grup yang berisi grup middleware
+| "web". Sekarang buatlah sesuatu yang hebat!
 |
 */
 //not in group
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
 //Route Group guest
-Route::group(['middleware'=>'isTamu'], function()
+Route::group(['middleware'=>['isTamu']], function()
 {
     Route::get('/login', [SessionController::class,'index'])->name('login');
     Route::get('/register', [SessionController::class, 'register'])->name('register');
@@ -28,9 +29,8 @@ Route::group(['middleware'=>'isTamu'], function()
 });
 
 //Route Application
-Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
+Route::group(['middleware'=> ['isLogin','checkRole:Admin']], function()
 {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
     //Halaman Siswa
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
     Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
@@ -62,10 +62,22 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin'], function()
     Route::get('/mapel/delete/{id}', [MapelController::class, 'delete']);
     Route::get('/TA-semester', [MapelController::class, 'show'])->name('tahunajar');
     Route::put('/semester/update/{id}', [MapelController::class, 'updateSemester']);
+
+    //NilaiMid
+    Route::get('/nilai', [NilaiController::class, 'index'])->name('mid');
+    Route::get('/nilai/{id}/lihat', [NilaiController::class, 'berinilai']);
+    Route::get('/nilai/{id}/cetak', [NilaiController::class, 'cetak']);
+    //Nilai Semester
+    Route::get('/nilai-semester', [NilaiController::class, 'show'])->name('semester');
+    Route::get('/nilai-semester/{id}/look', [NilaiController::class, 'kasihNilai']);
+    Route::get('/nilai-semester/{id}/cetak', [NilaiController::class, 'print']);
 });
 
-Route::group(['middleware'=>'isLogin','checkRole:Admin,Guru'], function()
+Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
 {
+
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+    Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
     //NilaiMid
     Route::get('/nilai', [NilaiController::class, 'index'])->name('mid');
     Route::get('/nilai/{id}/lihat', [NilaiController::class, 'berinilai']);
@@ -97,7 +109,7 @@ Route::group(['middleware'=>'isLogin','checkRole:Admin,Guru'], function()
 
 });
 
-Route::group(['middleware'=>'isLogin','checkRole: Siswa'], function(){
+Route::group(['middleware'=>['isLogin', 'checkRole: Siswa']], function(){
     Route::get('/siswa/check-ranking', [SiswaController::class, 'checkRanking'])->name('ranking');
 });
 Route::group(['middleware' => 'isLogin', 'checkRole: Admin, Guru, Siswa'], function () {

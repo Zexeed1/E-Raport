@@ -34,8 +34,9 @@
                     <b>Agama</b> <a class="float-right">{{ $siswa->agama }}</a>
                   </li>
                 </ul>
-
-                <a href="/siswa/edit/{{ $siswa->id }}" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+            @if (auth()->user()->role == 'Admin')
+            <a href="/siswa/edit/{{ $siswa->id }}" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+            @endif
               </div>
               <!-- /.card-body -->
             </div>
