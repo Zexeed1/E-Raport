@@ -51,7 +51,11 @@ class NilaiController extends Controller
         $mapel = mapel::find($request->mapel_id);
 
         // menambahkan kembali relasi dengan data baru
+        if ($siswa->mapel()->where('mapel_id', $request->mapel_id)->exists()) {
+            return redirect()->back()->with('already', 'Data nilai sudah ada');
+        }
         $siswa->mapel()->attach($mapel, ['kuis' => $request->kuis,'ulangan' => $request->ulangan,'uts' => $request->uts,'performance' => $request->performance, 'project' => $request->project, 'product' => $request->product, 'sikap' => $request->sikap, 'note' => $request->note]);
+
         return redirect()->back()->with('success', 'Data nilai berhasil di input');
     }
 

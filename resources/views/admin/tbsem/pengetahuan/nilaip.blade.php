@@ -19,7 +19,7 @@
                   <h4>
                     <i class="fa fa-book" aria-hidden="true"></i> Data Mata Pelajaran
                     @if (auth()->user()->role == 'Guru')
-                    <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input">Beri Nilai</a></small>
+                    <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input" title="Beri Nilai Kepada {{ $siswa->nama }}">Beri Nilai</a></small>
                     @endif
                   </h4>
                 </div>
@@ -150,7 +150,7 @@
                       <td style="text-align: justify">{{ $mapel->pivot->desk_p }}</td>
                       @if (auth()->user()->role == 'Guru')
                       <td>
-                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}">Edit Nilai</a>
+                         <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}" title="Edit Nilai {{ $mapel->kd_singkat }} {{ $siswa->nama }}">Edit Nilai</a>
                       </td>
                       @endif
                     </tr>

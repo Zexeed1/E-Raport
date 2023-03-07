@@ -18,7 +18,7 @@
             <h4>
               <i class="fa fa-graduation-cap" aria-hidden="true"></i> Data Siswa
                 @if (auth()->user()->role == 'Guru')
-                  <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input">Beri Nilai</a></small>
+                  <small class="float-right"><a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Input" title="Beri Nilai Kepada {{ $siswa->nama }}">Beri Nilai</a></small>
                 @endif
               </h4>
           </div><!-- /.col-12 -->
@@ -118,7 +118,7 @@
                 <td style="text-align: center"><b>{{ round($subtotal) }}</b></td>
                 @if (auth()->user()->role == 'Guru')
                 <td style="text-align: center">
-                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}">Edit Nilai</a>
+                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Update{{ $mapel->id }}" title="Edit Nilai {{ $mapel->kd_singkat }} {{ $siswa->nama }}">Edit Nilai</a>
                 </td>
                 @endif
               </tr>
@@ -193,7 +193,7 @@
                     <select id="inputStatus" class="form-control custom-select" name="mapel_id">
                       <option selected disabled>Pilih Mata Pelajaran</option>
                       @foreach ($matapelajaran as $lokal)
-                      <option value="{{ $lokal->id }}">{{ $lokal->mapel }} ({{ $lokal->kd_singkat }})</option>
+                      <option value="{{ $lokal->id }}">{{ $lokal->mapel }} ({{ $lokal->kd_singkat }}) || {{ $lokal->guru->nama }}</option>
                       @endforeach
                 </select>
                   </div>
@@ -288,7 +288,7 @@
                   <div class="form-group">
                     <label class="form-label">Mata Pelajaran</label>
                     <select class="form-control" name="mapel_id">
-                      <option value="{{ $mapel->id }}">{{ $mapel->mapel }} ({{ $mapel->kd_singkat }})</option>
+                      <option value="{{ $mapel->id }}">{{ $mapel->mapel }} ({{ $mapel->kd_singkat }}) || {{ $mapel->guru->nama }}</option>
                     </select>
                   </div>
                   <div class="card">

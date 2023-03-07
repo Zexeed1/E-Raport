@@ -71,9 +71,21 @@ Route::group(['middleware'=> ['isLogin','checkRole:Admin']], function()
     Route::get('/nilai-semester/{id}/cetak', [NilaiController::class, 'print']);
 });
 
-Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
+Route::group(['middleware'=>['isLogin','checkRole: Admin, Guru']], function()
 {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+    Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
 
+    Route::get('/nilai', [NilaiController::class, 'index'])->name('mid');
+    Route::get('/nilai/{id}/lihat', [NilaiController::class, 'berinilai']);
+
+    Route::get('/nilai-semester', [NilaiController::class, 'show'])->name('semester');
+    Route::get('/nilai-semester/{id}/look', [NilaiController::class, 'kasihNilai']);
+});
+
+Route::group(['middleware'=>'isLogin','checkRole: Guru'], function()
+{
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
     Route::get('/siswa/profile/{id}', [SiswaController::class, 'profile'])->name('profileSiswa');
@@ -96,8 +108,6 @@ Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
     Route::get('/nilai-keterampilan/{id}/siswa', [NilaiController::class, 'nilai_k']);
     Route::put('/nilai-keterampilan/{id}/update', [NilaiController::class, 'editk']);
 
-    Route::get('/nilai-semester', [NilaiController::class, 'show'])->name('semester');
-    Route::get('/nilai-semester/{id}/look', [NilaiController::class, 'kasihNilai']);
     Route::post('/nilai-semester/{id}/add',[NilaiController::class,'tambahNilai'])->name('semesterSimpan');
     Route::put('/nilai-semester/{id}/update', [NilaiController::class, 'editNilai']);
     Route::get('/nilai-semester/{id}/cetak', [NilaiController::class, 'print']);
@@ -105,8 +115,8 @@ Route::group(['middleware'=>['isLogin','checkRole:Guru']], function()
     //Nilai Sikap
     Route::get('/nilai-sikap', [NilaiController::class, 'sikap'])->name('sikap');
     Route::put('/nilai-sikap/{id}/update', [NilaiController::class, 'update']);
-
 });
+
 
 Route::group(['middleware'=>'isLogin', 'checkRole: Siswa'], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
